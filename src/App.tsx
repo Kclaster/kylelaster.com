@@ -1,26 +1,29 @@
+// External Dependencies
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-const App: React.FC = () => {
+// Internal Dependencies
+import LoadingPage from './pages/LoadingPage';
+
+// Local Variables
+const LazyHomePageRoute = React.lazy(() =>
+  import('./pages/LandingPage')
+);
+
+const HomePage = (props: any) => <LazyHomePageRoute {...props} />;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter basename="/weddingPlannerSite">
+        <React.Suspense fallback={<LoadingPage />}>
+          <div>
+            <Route path="/" exact component={HomePage} />
+          </div>
+        </React.Suspense>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

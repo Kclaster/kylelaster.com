@@ -4,12 +4,12 @@ import React from 'react';
 // Internal Dependencies
 
 // Component Definition 
-const LandingPage = () => {
+const LoadingPage = () => {
   return (
     <div>
-      Landing
+      Loading
     </div>
   )
 }
 
-export default LandingPage;
+export default LoadingPage;
