@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // Internal Dependencies
 import LoadingPage from './pages/LoadingPage';
 import {ROUTES} from './constants/routes';
+import NavBar from './components/NavBar';
 
 // Local Variables
 const LazyHomePageRoute = React.lazy(() =>
@@ -23,6 +24,7 @@ const App = () => {
       <BrowserRouter basename="/weddingPlannerSite">
         <React.Suspense fallback={<LoadingPage />}>
           <div>
+            <NavBar />
             <Route path="/" exact component={HomePage} />
             <Route path={ROUTES.BLOG} component={BlogPage} />
             <Route path={ROUTES.CLIENT_PORTAL} component={ClientPortal} />

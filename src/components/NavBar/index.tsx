@@ -2,12 +2,22 @@
 import React from 'react';
 
 // Internal Dependencies
+import Link from '../Link';
+import { ROUTES } from '../../constants/routes';
+import styled from '@emotion/styled';
+
+// Local Variables
+const Wrapper = styled.div({
+  position: 'fixed'
+})
 
 // Component Definition
 const NavBar: React.FC = () => {
   return (
-  <div>
-  </div>
+  <Wrapper>
+    <Link to={`/${ROUTES.BLOG}`}>Blog</Link>
+    <Link to={`/${ROUTES.CLIENT_PORTAL}`}>Client Portal</Link>
+  </Wrapper>
   )
 }
 

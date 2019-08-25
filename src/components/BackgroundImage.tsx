@@ -18,6 +18,7 @@ const ImageContainer = styled.div<Props>((props) => ({
   height: '100vh',
   width: '100vw',
   position: 'fixed',
+  zIndex: -1,
   '@media(max-width: 450px)': {
     background:  `url(${props.mobileBackgroundImage}) ${BASE_COLORS.WHITE}`,
   }
