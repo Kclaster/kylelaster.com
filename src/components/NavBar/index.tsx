@@ -8,7 +8,10 @@ import styled from '@emotion/styled';
 
 // Local Variables
 const Wrapper = styled.div({
-  position: 'fixed'
+  position: 'fixed',
+  width: '50%',
+  display: 'flex',
+  justifyContent: 'space-between',
 })
 
 // Component Definition
