@@ -7,20 +7,20 @@ import { BASE_COLORS } from '../constants/styles'
 
 // Local Typings
 interface Props {
-  backgroundImage: string;
-}
-
-interface ImageContainerProps {
-  backgroundImage: string;
+  desktopBackgroundImage: string;
+  mobileBackgroundImage: string;
 }
 
 // Local Variables
-const ImageContainer = styled.div<ImageContainerProps>((props: Props) => ({
-  background:  `url(${props.backgroundImage}) ${BASE_COLORS.WHITE}`,
+const ImageContainer = styled.div<Props>((props) => ({
+  background:  `url(${props.desktopBackgroundImage}) ${BASE_COLORS.WHITE}`,
   backgroundSize: 'cover',
   height: '100vh',
   width: '100vw',
-  position: 'fixed'
+  position: 'fixed',
+  '@media(max-width: 450px)': {
+    background:  `url(${props.desktopBackgroundImage}) ${BASE_COLORS.WHITE}`,
+  }
 }));
 
 // Component Definition

@@ -3,13 +3,14 @@ import React from 'react';
 
 // Internal Dependencies
 import BackgroundImage from '../../components/BackgroundImage';
-const backgroundImage = require('../../assets/pictures/bricks_to_heaven.png')
+const mobileBackgroundImage = require('../../assets/pictures/bricks_to_heaven.png')
+const desktopBackgroundImage = require('../../assets/pictures/road.png')
 
 // Component Definition 
 const LandingPage = () => {
   return (
     <>
-     <BackgroundImage backgroundImage={backgroundImage}/>
+     <BackgroundImage desktopBackgroundImage={desktopBackgroundImage} mobileBackgroundImage={mobileBackgroundImage}/>
     </>
   )
 }
