@@ -10,7 +10,6 @@ const LandingPage = () => {
   return (
     <>
      <BackgroundImage backgroundImage={backgroundImage}/>
-    <h1>bob</h1>
     </>
   )
 }
