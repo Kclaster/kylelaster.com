@@ -19,7 +19,7 @@ const ImageContainer = styled.div<Props>((props) => ({
   width: '100vw',
   position: 'fixed',
   '@media(max-width: 450px)': {
-    background:  `url(${props.desktopBackgroundImage}) ${BASE_COLORS.WHITE}`,
+    background:  `url(${props.mobileBackgroundImage}) ${BASE_COLORS.WHITE}`,
   }
 }));
 
