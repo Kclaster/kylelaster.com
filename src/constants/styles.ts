@@ -7,5 +7,6 @@ export const PADDING = {
 }
 
 export const BORDERS = {
-  STANDARD: `1px solid ${BASE_COLORS.WHITE}`
+  STANDARD: `1px solid ${BASE_COLORS.WHITE}`,
+  HIDDEN: '1px solid transparent',
 }

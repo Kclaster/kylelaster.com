@@ -15,6 +15,7 @@ const StyledRouterLink = styled(RouterLink)({
   color: BASE_COLORS.WHITE,
   textDecoration: 'none',
   paddingBottom: PADDING.MD,
+  borderBottom: BORDERS.HIDDEN,
   '&:hover': {
     borderBottom: BORDERS.STANDARD,
   }
