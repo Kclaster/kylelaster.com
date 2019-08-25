@@ -16,7 +16,6 @@ interface ImageContainerProps {
 
 // Local Variables
 const ImageContainer = styled.div<ImageContainerProps>((props: Props) => ({
-  // background: `url(${props.backgroundImage} ${BASE_COLORS})`,
   background:  `url(${props.backgroundImage}) ${BASE_COLORS.WHITE}`,
   backgroundSize: 'cover',
   height: '100vh',
