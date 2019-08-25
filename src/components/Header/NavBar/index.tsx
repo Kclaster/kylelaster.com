@@ -2,14 +2,14 @@
 import React from 'react';
 
 // Internal Dependencies
-import Link from '../Link';
-import { ROUTES } from '../../constants/routes';
+import Link from '../../Link';
+import { ROUTES } from '../../../constants/routes';
 import styled from '@emotion/styled';
 
 // Local Variables
 const Wrapper = styled.div({
   position: 'fixed',
-  width: '50%',
+  width: '500px',
   display: 'flex',
   justifyContent: 'space-between',
 })
