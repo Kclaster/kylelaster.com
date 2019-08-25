@@ -2,6 +2,9 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
+// Internal Dependencies
+import { BASE_COLORS } from '../constants/styles'
+
 // Local Typings
 interface Props {
   backgroundImage: string;
@@ -13,8 +16,12 @@ interface ImageContainerProps {
 
 // Local Variables
 const ImageContainer = styled.div<ImageContainerProps>((props: Props) => ({
-  backgroundImage: props.backgroundImage,
+  // background: `url(${props.backgroundImage} ${BASE_COLORS})`,
+  background:  `url(${props.backgroundImage}) ${BASE_COLORS.WHITE}`,
   backgroundSize: 'cover',
+  height: '100vh',
+  width: '100vw',
+  position: 'fixed'
 }));
 
 // Component Definition
