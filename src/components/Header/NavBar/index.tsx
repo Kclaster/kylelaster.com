@@ -14,12 +14,16 @@ const Wrapper = styled.div({
   justifyContent: 'space-around',
 })
 
+const StyledLink = styled(Link)({
+  fontFamily: 'Red Hat Text'
+})
+
 // Component Definition
 const NavBar: React.FC = () => {
   return (
   <Wrapper>
-    <Link to={`/${ROUTES.BLOG}`}>Blog</Link>
-    <Link to={`/${ROUTES.CLIENT_PORTAL}`}>Client Portal</Link>
+    <StyledLink to={`/${ROUTES.BLOG}`}>Blog</StyledLink>
+    <StyledLink to={`/${ROUTES.CLIENT_PORTAL}`}>Client Portal</StyledLink>
   </Wrapper>
   )
 }

@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import LoadingPage from './pages/LoadingPage';
 import {ROUTES} from './constants/routes';
 import Header from './components/Header';
+import './App.css';
 
 // Local Variables
 const LazyHomePageRoute = React.lazy(() =>
