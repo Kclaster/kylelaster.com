@@ -1,10 +1,10 @@
 // External Dependencies
 import React from 'react';
+import styled from '@emotion/styled';
 
 // Internal Dependencies
 import Link from '../Link';
 import { ROUTES } from '../../constants/routes';
-import styled from '@emotion/styled';
 
 // Local Variables
 const Wrapper = styled.div({
