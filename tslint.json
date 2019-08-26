@@ -1,8 +1,18 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-airbnb"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-airbnb"
+  ],
   "jsRules": true,
   "rules": {
-    "align": [true, "parameters", "statements", "members", "elements"],
+    "align": [
+      true,
+      "parameters",
+      "statements",
+      "members",
+      "elements"
+    ],
     "curly": true,
     "import-name": false,
     "interface-name": false,
@@ -10,13 +20,17 @@
     "jsx-no-multiline-js": false,
     "jsx-space-before-trailing-slash": true,
     "max-line-length": {
-      "options": [120]
+      "options": [
+        120
+      ]
     },
     "member-access": false,
     "member-ordering": [
       true,
       {
-        "order": ["public-instance-field"],
+        "order": [
+          "public-instance-field"
+        ],
         "alphabetize": true
       }
     ],
@@ -26,11 +40,19 @@
     "no-conditional-assignment": true,
     "no-consecutive-blank-lines": true,
     "no-console": false,
+    "no-var-requires": false,
     "object-literal-sort-keys": true,
     "object-shorthand-properties-first": false,
     "only-arrow-functions": false,
-    "quotemark": [true, "single", "jsx-double"],
-    "ter-padded-blocks": [true, "never"],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "ter-padded-blocks": [
+      true,
+      "never"
+    ],
     "trailing-comma": [
       true,
       {

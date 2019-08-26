@@ -3,7 +3,10 @@ import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
-import { BASE_SIZES, BaseSizes } from '../../constants/sizes';
+import {
+  BASE_SIZES,
+  BaseSizes,
+} from '../../constants/sizes';
 
 // Local Typings
 interface Props {
@@ -24,7 +27,7 @@ function getWidth(width: BaseSizes) {
 }
 
 // Component Definition
-const GlossedWindow: React.FC<Props> = props => {
+const GlossedWindow: React.FC<Props> = (props) => {
   return <div className={getStyle(props)} />;
 };
 
