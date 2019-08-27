@@ -24,7 +24,9 @@ const LandingPage = () => {
           height="60%"
           width="75%"
         >
-          <Heading1>My Portfolio</Heading1>
+          <CenterContentWrapper fullHeight={false}>
+            <Heading1>My Portfolio</Heading1>
+          </CenterContentWrapper>
           <div>
             <Snippet />
           </div>
