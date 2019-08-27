@@ -12,7 +12,7 @@ interface Props {
 // Local Variables
 const getStyle = (props: Props) =>
   css({
-    boxShadow: 'inset 0 0 0 3000px rgba(255,255,255,0.3);',
+    boxShadow: 'inset 0 0 0 3000px rgba(5,5,5,0.5);',
     height: props.height,
     position: 'relative',
     width: props.width,

@@ -5,9 +5,11 @@ import Text from '.';
 // Internal Dependencies
 
 // Component Definition
-const Heading1: React.FC = () => {
+const Heading1: React.FC = (props) => {
   return (
-    <Text />
+    <Text fontSize="lg">
+      {props.children}
+    </Text>
   );
 };
 

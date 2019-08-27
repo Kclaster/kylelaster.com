@@ -1,25 +1,36 @@
 // External Dependencies
-import styled from '@emotion/styled';
+import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
+import { FontSizes } from '../../constants/sizes';
+import { BASE_COLORS } from '../../constants/styles';
+import { getFontSize } from '../../utils/sizes';
 
 // Local Typings
-interface Props {
+interface TextProps {
   color?: string;
+  fontSize: FontSizes;
+  fontWeight?: number;
 }
 
 // Local Variable
-const StyledText = styled.p((props: Props) => ({
-  color: props.color ? props.color : 'white',
-}));
+const getStyle = ({
+  color,
+  fontSize,
+  fontWeight,
+}: TextProps) => css({
+  color: color ? color : BASE_COLORS.WHITE,
+  fontSize: getFontSize(fontSize),
+  fontWeight,
+});
 
 // Component Definition
-const Text: React.FC<Props> = (props) => {
+const Text: React.FC<TextProps> = (props) => {
   return (
-    <StyledText {...props}>
+    <p className={getStyle(props)}>
       {props.children}
-    </StyledText>
+    </p>
   );
 };
 

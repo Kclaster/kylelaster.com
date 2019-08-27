@@ -1,10 +1,10 @@
 // Internal Dependencies
 import {
-  BASE_SIZES,
-  BaseSizes,
+  FONT_SIZES,
+  FontSizes,
 } from '../constants/sizes';
 
-// Export
-export function getBaseSize(width: BaseSizes) {
-  return BASE_SIZES[width];
-}
+// Exports
+export const getFontSize = (size: FontSizes) => {
+  return FONT_SIZES[size];
+};

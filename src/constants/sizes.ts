@@ -1,12 +1,4 @@
 // Typings
-export type BaseSizes =
-  'sm' |
-  'md' |
-  'lg' |
-  'xl' |
-  'xxl' |
-  'xxxl';
-
 export type BasePercents =
   '25%' |
   '50%' |
@@ -14,6 +6,12 @@ export type BasePercents =
   '75%' |
   '90%' |
   '100%';
+
+export type FontSizes =
+  'sm' |
+  'md' |
+  'lg' |
+  'xl';
 
 // Exports
 export const HEADER_DIMENSIONS = {
@@ -24,13 +22,11 @@ export const NAVBAR_DIMENSIONS = {
   WIDTH: '315px',
 };
 
-export const BASE_SIZES: {
-  [k in BaseSizes]: string;
+export const FONT_SIZES: {
+  [k in FontSizes]: string;
 } = {
-  lg: '300px',
-  md: '200px',
-  sm: '100px',
-  xl: '400px',
-  xxl: '500px',
-  xxxl: '600px',
+  lg: '36px',
+  md: '24px',
+  sm: '16px',
+  xl: '40px',
 };
