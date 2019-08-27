@@ -20,7 +20,11 @@ const getStyle = (props: Props) =>
 
 // Component Definition
 const GlossedWindow: React.FC<Props> = (props) => {
-  return <div className={getStyle(props)} />;
+  return (
+    <div className={getStyle(props)}>
+      {props.children}
+    </div>
+  );
 };
 
 export default GlossedWindow;
