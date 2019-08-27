@@ -1,5 +1,3 @@
-import { string } from 'prop-types';
-
 // Typings
 export type BaseSizes =
   'sm' |
