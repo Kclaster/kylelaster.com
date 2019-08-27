@@ -13,9 +13,15 @@ const desktopBackgroundImage = require('../../assets/pictures/road.png');
 const LandingPage = () => {
   return (
     <Page>
-      <BackgroundImage desktopBackgroundImage={desktopBackgroundImage} mobileBackgroundImage={mobileBackgroundImage} />
+      <BackgroundImage
+        desktopBackgroundImage={desktopBackgroundImage}
+        mobileBackgroundImage={mobileBackgroundImage}
+      />
       <CenterContentWrapper>
-      <GlossedWindow width="md" />
+        <GlossedWindow
+          height="60%"
+          width="75%"
+        />
       </CenterContentWrapper>
     </Page>
   );
