@@ -1,9 +1,11 @@
 // External Dependencies
+import { FlexDirectionProperty } from 'csstype';
 import { css } from 'emotion';
 import React from 'react';
 
 // Local Typings
 interface Props {
+  flexDirection?: FlexDirectionProperty;
   fullHeight?: boolean;
   fullWidth?: boolean;
 }
@@ -12,9 +14,11 @@ interface Props {
 const getStyle = ({
   fullHeight = true,
   fullWidth = true,
-}) => css({
+  flexDirection,
+}: Props) => css({
   alignItems: 'center',
   display: 'flex',
+  flexDirection,
   height: fullHeight ? '100%' : 'auto',
   justifyContent: 'center',
   width: fullWidth ? '100%' : 'auto',

@@ -2,8 +2,10 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-// Internal Dependencies
-const backgroundWeddingsLogo = require('../../assets/pictures/background_weddings.png');
+// Local Typings
+interface Props {
+  image: string;
+}
 
 // Local Variable
 const StyledImg = styled.img({
@@ -13,12 +15,12 @@ const StyledImg = styled.img({
 const Wrapper = styled.div({
 });
 
-const Snippet: React.FC = () => {
+const Snippet: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <StyledImg
         alt="background weddings logo"
-        src={backgroundWeddingsLogo}
+        src={props.image}
       />
     </Wrapper>
   );
