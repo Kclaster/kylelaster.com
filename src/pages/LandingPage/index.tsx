@@ -2,6 +2,7 @@
 import React from 'react';
 
 // Internal Dependencies
+import AppearTyping from '../../components/AppearTyping';
 import BackgroundImage from '../../components/BackgroundImage';
 import Flex from '../../components/Flex';
 import GlossedWindow from '../../components/GlossedWindow';
@@ -20,7 +21,7 @@ const LandingPage = () => {
         desktopBackgroundImage={desktopBackgroundImage}
         mobileBackgroundImage={mobileBackgroundImage}
       />
-      <Flex>
+      <Flex flexDirection="column">
         <GlossedWindow
           width="75%"
         >
@@ -36,6 +37,9 @@ const LandingPage = () => {
             />
           </Flex>
         </GlossedWindow>
+        <AppearTyping width="75%">
+          I am a	front-end web developer	with a focus in ReactJS. And I love turning static pages into interactive works of art. If you are looking to build up your developer team or just wanting to design your own website, I am waiting to hear from you below!
+        </AppearTyping>
       </Flex>
     </Page>
   );

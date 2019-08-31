@@ -21,7 +21,7 @@
     "jsx-space-before-trailing-slash": true,
     "max-line-length": {
       "options": [
-        120
+        1000
       ]
     },
     "member-access": false,
