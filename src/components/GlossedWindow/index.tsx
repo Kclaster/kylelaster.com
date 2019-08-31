@@ -16,10 +16,19 @@ interface Props {
 // Local Variables
 const getStyle = (props: Props) =>
   css({
-    boxShadow: 'inset 0 0 0 3000px rgba(255,255,255,0.3);',
-    height: '500px',
-    position: 'relative',
-    width: getWidth(props.width),
+    background: 'inherit',
+    height: '350px',
+    overflow: 'hidden',
+    position: 'absolute',
+    width: '250px',
+
+    '&:before': {
+      boxShadow: 'inset 0 0 0 3000px rgba(255,2555,255,0.3)',
+      filter: 'blur(10px)',
+      height: '500px',
+      position: 'relative',
+      width: getWidth(props.width),
+    },
   });
 
 function getWidth(width: BaseSizes) {
