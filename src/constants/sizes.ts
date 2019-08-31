@@ -18,6 +18,10 @@ export const HEADER_DIMENSIONS = {
   HEIGHT: '5vw',
 };
 
+export const IMAGE_SIZES = {
+  sm: '300px',
+};
+
 export const NAVBAR_DIMENSIONS = {
   WIDTH: '315px',
 };

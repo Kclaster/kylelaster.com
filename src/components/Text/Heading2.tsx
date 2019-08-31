@@ -5,12 +5,15 @@ import React from 'react';
 import Text, { TextProps } from '.';
 
 // Component Definition
-const Paragraph: React.FC<TextProps> = (props) => {
+const Heading1: React.FC<TextProps> = (props) => {
   return (
-    <Text fontSize="sm" {...props}>
+    <Text
+      fontSize="md"
+      {...props}
+    >
       {props.children}
     </Text>
   );
 };
 
-export default Paragraph;
+export default Heading1;

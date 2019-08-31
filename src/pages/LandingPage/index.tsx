@@ -3,11 +3,12 @@ import React from 'react';
 
 // Internal Dependencies
 import BackgroundImage from '../../components/BackgroundImage';
-import CenterContentWrapper from '../../components/Flex';
+import Flex from '../../components/Flex';
 import GlossedWindow from '../../components/GlossedWindow';
 import Page from '../../components/Page';
 import Snippet from '../../components/Snippet';
 import Heading1 from '../../components/Text/Heading1';
+import Paragraph from '../../components/Text/Paragraph';
 const mobileBackgroundImage = require('../../assets/pictures/bricks_to_heaven.png');
 const desktopBackgroundImage = require('../../assets/pictures/road.png');
 const backgroundWeddingsSnippet = require('../../assets/pictures/background_weddings_snippet.png');
@@ -20,20 +21,24 @@ const LandingPage = () => {
         desktopBackgroundImage={desktopBackgroundImage}
         mobileBackgroundImage={mobileBackgroundImage}
       />
-      <CenterContentWrapper>
+      <Flex>
         <GlossedWindow
           height="60%"
           width="75%"
         >
-          <CenterContentWrapper
+          <Flex
             fullHeight={false}
             flexDirection="column"
           >
             <Heading1>My Portfolio</Heading1>
-            <Snippet image={backgroundWeddingsSnippet} />
-          </CenterContentWrapper>
+            <Snippet
+              image={backgroundWeddingsSnippet}
+              title="Background Weddings"
+              text="Technologies Used: AWS, JavaScript, NodeJS, ReactJS"
+            />
+          </Flex>
         </GlossedWindow>
-      </CenterContentWrapper>
+      </Flex>
     </Page>
   );
 };

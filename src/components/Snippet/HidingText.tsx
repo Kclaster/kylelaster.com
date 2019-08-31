@@ -3,16 +3,9 @@ import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
-import { FontSizes } from '../../constants/sizes';
 import { BASE_COLORS } from '../../constants/styles';
 import { getFontSize } from '../../utils/sizes';
-
-// Local Typings
-export interface TextProps {
-  color?: string;
-  fontSize?: FontSizes;
-  fontWeight?: number;
-}
+import { TextProps } from '../Text';
 
 // Local Variable
 const getStyle = ({
@@ -20,14 +13,18 @@ const getStyle = ({
   fontSize = 'md',
   fontWeight = 400,
 }: TextProps) => css({
-  color: color ? color : BASE_COLORS.WHITE,
+  color: 'transparent',
   fontSize: getFontSize(fontSize),
   fontWeight,
   textDecoration: 'none',
+
+  '&.text_wrapper:hover': {
+    color: color ? color : BASE_COLORS.WHITE,
+  },
 });
 
 // Component Definition
-const Text: React.FC<TextProps> = (props) => {
+const HidingText: React.FC<TextProps> = (props) => {
   return (
     <p className={getStyle(props)}>
       {props.children}
@@ -35,4 +32,4 @@ const Text: React.FC<TextProps> = (props) => {
   );
 };
 
-export default Text;
+export default HidingText;
