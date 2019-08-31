@@ -26,6 +26,11 @@ export const NAVBAR_DIMENSIONS = {
   WIDTH: '315px',
 };
 
+export const PADDING_SIZES = {
+  md: '30px',
+  sm: '15px',
+};
+
 export const FONT_SIZES: {
   [k in FontSizes]: string;
 } = {

@@ -3,7 +3,10 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
 // Internal Dependencies
-import { IMAGE_SIZES } from '../../constants/sizes';
+import {
+  IMAGE_SIZES,
+  PADDING_SIZES,
+} from '../../constants/sizes';
 import HidingText from './HidingText';
 
 // Local Typings
@@ -23,12 +26,17 @@ const Wrapper = styled.div({
 });
 
 const TextWrapper = styled.div({
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
   height: '100%',
+  justifyContent: 'flex-end',
+  padding: PADDING_SIZES.md,
   position: 'absolute',
   top: 0,
   width: '100%',
 
-  ':hover': {
+  '&:hover': {
     background: 'rgba(0,0,0,.65)',
     cursor: 'pointer',
     zIndex: 2,
@@ -56,10 +64,26 @@ const Snippet: React.FC<StyledImgProps> = (props) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <HidingText isHovering={isHovering}>
+        <HidingText
+          fontSize="md"
+          isHovering={isHovering}
+          textDecoration="underline"
+        >
           {props.title}
         </HidingText>
-        <HidingText isHovering={isHovering}>
+        <HidingText
+          fontSize="sm"
+          isHovering={isHovering}
+        >
+          <HidingText
+            as="span"
+            fontSize="sm"
+            fontWeight={700}
+            isHovering={isHovering}
+          >
+            Technologies Used:
+            {' '}
+          </HidingText>
           {props.text}
         </HidingText>
       </TextWrapper>

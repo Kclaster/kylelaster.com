@@ -9,6 +9,7 @@ import { getFontSize } from '../../utils/sizes';
 
 // Local Typings
 export interface TextProps {
+  as?: any;
   color?: string;
   fontSize?: FontSizes;
   fontWeight?: number;
@@ -27,12 +28,16 @@ const getStyle = ({
 });
 
 // Component Definition
-const Text: React.FC<TextProps> = (props) => {
-  return (
-    <p className={getStyle(props)}>
-      {props.children}
-    </p>
-  );
+const Text: React.FC<TextProps> = ({
+  as = 'p',
+  ...props
+}) => {
+  return React.createElement(
+    as,
+    {
+      className: getStyle(props),
+      ...props,
+    }, props.children);
 };
 
 export default Text;

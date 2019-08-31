@@ -1,21 +1,25 @@
 // External Dependencies
 import { css } from 'emotion';
 import React from 'react';
-import { BasePercents } from '../../constants/sizes';
+import { BasePercents, PADDING_SIZES } from '../../constants/sizes';
 
 // Local Typings
 interface Props {
-  height: BasePercents;
+  height?: BasePercents | 'auto';
   width: BasePercents;
 }
 
 // Local Variables
-const getStyle = (props: Props) =>
+const getStyle = ({
+  height = 'auto',
+  width,
+}: Props) =>
   css({
     boxShadow: 'inset 0 0 0 3000px rgba(5,5,5,0.5);',
-    height: props.height,
+    height,
+    padding: PADDING_SIZES.md,
     position: 'relative',
-    width: props.width,
+    width,
   });
 
 // Component Definition

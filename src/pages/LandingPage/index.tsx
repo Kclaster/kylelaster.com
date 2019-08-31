@@ -8,7 +8,6 @@ import GlossedWindow from '../../components/GlossedWindow';
 import Page from '../../components/Page';
 import Snippet from '../../components/Snippet';
 import Heading1 from '../../components/Text/Heading1';
-import Paragraph from '../../components/Text/Paragraph';
 const mobileBackgroundImage = require('../../assets/pictures/bricks_to_heaven.png');
 const desktopBackgroundImage = require('../../assets/pictures/road.png');
 const backgroundWeddingsSnippet = require('../../assets/pictures/background_weddings_snippet.png');
@@ -23,7 +22,6 @@ const LandingPage = () => {
       />
       <Flex>
         <GlossedWindow
-          height="60%"
           width="75%"
         >
           <Flex
@@ -34,7 +32,7 @@ const LandingPage = () => {
             <Snippet
               image={backgroundWeddingsSnippet}
               title="Background Weddings"
-              text="Technologies Used: AWS, JavaScript, NodeJS, ReactJS"
+              text="AWS, JavaScript, NodeJS, ReactJS"
             />
           </Flex>
         </GlossedWindow>
