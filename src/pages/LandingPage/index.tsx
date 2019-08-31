@@ -3,7 +3,7 @@ import React from 'react';
 
 // Internal Dependencies
 import BackgroundImage from '../../components/BackgroundImage';
-import CenterContentWrapper from '../../components/CenterContentWrapper';
+import CenterContentWrapper from '../../components/Flex';
 import GlossedWindow from '../../components/GlossedWindow';
 import Page from '../../components/Page';
 import Snippet from '../../components/Snippet';
