@@ -1,10 +1,9 @@
 // External Dependencies
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 
 // Internal Dependencies
 import { IMAGE_SIZES } from '../../constants/sizes';
-import Paragraph from '../Text/Paragraph';
 import HidingText from './HidingText';
 
 // Local Typings
@@ -37,19 +36,32 @@ const TextWrapper = styled.div({
 });
 
 const Snippet: React.FC<StyledImgProps> = (props) => {
+  const [isHovering, setIsHovering] = useState(false);
+
+  function handleMouseEnter() {
+    setIsHovering(true);
+  }
+
+  function handleMouseLeave() {
+    setIsHovering(false);
+  }
+
   return (
     <Wrapper>
       <StyledImg
         alt="background weddings logo"
         src={props.image}
       />
-      <TextWrapper className="text_wrapper">
-        <HidingText>
+      <TextWrapper
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <HidingText isHovering={isHovering}>
           {props.title}
         </HidingText>
-        <Paragraph>
+        <HidingText isHovering={isHovering}>
           {props.text}
-        </Paragraph>
+        </HidingText>
       </TextWrapper>
     </Wrapper>
   );
