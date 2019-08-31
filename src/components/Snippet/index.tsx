@@ -7,6 +7,7 @@ import {
   IMAGE_SIZES,
   PADDING_SIZES,
 } from '../../constants/sizes';
+import { BASE_COLORS } from '../../constants/styles';
 import HidingText from './HidingText';
 
 // Local Typings
@@ -22,6 +23,10 @@ const StyledImg = styled.img({
 });
 
 const Wrapper = styled.div({
+  alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  padding: PADDING_SIZES.sm,
   position: 'relative',
 });
 
@@ -38,6 +43,8 @@ const TextWrapper = styled.div({
 
   '&:hover': {
     background: 'rgba(0,0,0,.65)',
+    border: `1px solid ${BASE_COLORS.WHITE}`,
+    borderRadius: '4px',
     cursor: 'pointer',
     zIndex: 2,
   },
