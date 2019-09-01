@@ -13,6 +13,12 @@ export type FontSizes =
   'lg' |
   'xl';
 
+export type SpaceSizes =
+  'sm' |
+  'md' |
+  'lg' |
+  'xl';
+
 // Exports
 export const HEADER_DIMENSIONS = {
   HEIGHT: '5vw',
@@ -38,4 +44,22 @@ export const FONT_SIZES: {
   md: '24px',
   sm: '16px',
   xl: '40px',
+};
+
+export const SPACE_SIZES: {
+  [k in FontSizes]: string;
+} = {
+  lg: '36px',
+  md: '24px',
+  sm: '12px',
+  xl: '72px',
+};
+
+// Export Functions
+export const getSpaceSizes = (size?: SpaceSizes) => {
+  if (!size) {
+    return undefined;
+  }
+  console.log({ size });
+  return SPACE_SIZES[size];
 };
