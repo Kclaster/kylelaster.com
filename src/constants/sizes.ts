@@ -56,10 +56,12 @@ export const SPACE_SIZES: {
 };
 
 // Export Functions
-export const getSpaceSizes = (size?: SpaceSizes) => {
-  if (!size) {
+// tslint:disable-next-line:prefer-array-literal
+export function getSpace(spaces: Array<SpaceSizes | undefined>) {
+  const space = spaces.find(val => !!val);
+  if (!space) {
     return undefined;
   }
-  console.log({ size });
-  return SPACE_SIZES[size];
-};
+
+  return SPACE_SIZES[space];
+}

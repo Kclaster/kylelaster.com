@@ -2,38 +2,61 @@
 import React from 'react';
 
 // Internal Dependencies
-import { getSpaceSizes, SpaceSizes } from '../constants/sizes';
+import {
+  getSpace,
+  SpaceSizes,
+} from '../constants/sizes';
 
 // Local Typings
 interface Props extends SpaceProps {
   children: React.ReactElement<any>;
 }
-
-interface SpaceProps {
+export interface SpaceProps {
   margin?: SpaceSizes;
+  marginBottom?: SpaceSizes;
+  marginLeft?: SpaceSizes;
+  marginRight?: SpaceSizes;
+  marginTop?: SpaceSizes;
+  marginX?: SpaceSizes;
+  marginY?: SpaceSizes;
   padding?: SpaceSizes;
+  paddingBottom?: SpaceSizes;
+  paddingLeft?: SpaceSizes;
+  paddingRight?: SpaceSizes;
+  paddingTop?: SpaceSizes;
+  paddingX?: SpaceSizes;
+  paddingY?: SpaceSizes;
 }
-
-// Local
 
 // Component Definition
 const Space: React.FC<Props> = ({
   children,
   margin,
+  marginY,
+  marginX,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
   padding,
+  paddingY,
+  paddingX,
+  paddingTop,
+  paddingBottom,
+  paddingLeft,
+  paddingRight,
 }) => {
   const style = {
-    marginBottom: getSpaceSizes(margin),
-    marginLeft: getSpaceSizes(margin),
-    marginRight: getSpaceSizes(margin),
-    marginTop: getSpaceSizes(margin),
-    paddingBottom: getSpaceSizes(padding),
-    paddingLeft: getSpaceSizes(padding),
-    paddingRight: getSpaceSizes(padding),
-    paddingTop: getSpaceSizes(padding),
+    marginBottom: getSpace([marginBottom, marginY, margin]),
+    marginLeft: getSpace([marginLeft, marginX, margin]),
+    marginRight: getSpace([marginRight, marginX, margin]),
+    marginTop: getSpace([marginTop, marginY, margin]),
+    paddingBottom: getSpace([paddingBottom, paddingY, padding]),
+    paddingLeft: getSpace([paddingLeft, paddingX, padding]),
+    paddingRight: getSpace([paddingRight, paddingX, padding]),
+    paddingTop: getSpace([paddingTop, paddingY, padding]),
   };
 
-  console.log('akuna', style);
   return React.cloneElement(
     children, {
       style,

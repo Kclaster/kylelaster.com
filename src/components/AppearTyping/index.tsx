@@ -4,7 +4,7 @@ import React from 'react';
 // Internal Dependencies
 import { css } from 'emotion';
 import Text from '../../components/Text';
-import { BasePercents } from '../../constants/sizes';
+import { BasePercents, SPACE_SIZES } from '../../constants/sizes';
 
 // Local Typings
 interface Props extends WrapperProps {
@@ -19,6 +19,7 @@ interface WrapperProps {
 const getStyle = ({
   width = 'auto',
 }: WrapperProps) => css({
+  marginTop: SPACE_SIZES.md,
   width,
 });
 
@@ -32,7 +33,7 @@ const AppearTyping: React.FC<Props> = ({
 
   return (
     <div className={getStyle(props)}>
-      <Text fontSize="sm">
+      <Text textIndent="30px" fontSize="sm">
         {children}
       </Text>
     </div>
