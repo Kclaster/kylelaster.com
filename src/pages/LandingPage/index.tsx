@@ -38,9 +38,13 @@ const LandingPage = () => {
             />
           </Flex>
         </GlossedWindow>
-        <AppearTyping width="75%">
-          I am a	front-end web developer	with a focus in ReactJS. And I love turning static pages into interactive works of art. If you are looking to build up your developer team or just wanting to design your own website, I am waiting to hear from you below!
-          </AppearTyping>
+        <AppearTyping
+          width="75%"
+          messages={[
+            'Hi my name is Kyle Laster',
+            'I am a	front-end web developer	with a focus in ReactJS. And I love turning static pages into interactive works of art. If you are looking to build up your developer team or just wanting to design your own website, I am waiting to hear from you below!',
+          ]}
+        />
       </Flex>
     </Page>
   );

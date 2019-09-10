@@ -8,7 +8,7 @@ import Text from '../Text';
 import UnderScore from './UnderScore';
 // Local Typings
 interface Props extends WrapperProps {
-  children: string;
+  messages: string[];
 }
 
 interface WrapperProps {
@@ -16,6 +16,9 @@ interface WrapperProps {
 }
 
 interface State {
+  currentMessage: string;
+  iterator: number;
+  messages: string[];
   renderedLetters: string[];
   shouldRender: boolean;
   splitChildren: string[];
@@ -34,6 +37,9 @@ class AppearTyping extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      currentMessage: '',
+      iterator: 0,
+      messages: [],
       renderedLetters: [],
       shouldRender: false,
       splitChildren: [],
@@ -41,8 +47,21 @@ class AppearTyping extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    this.setState({
+      currentMessage: this.state.messages[0],
+    });
     this.myInterval = window.setInterval(this.handleMoveCharacters, 12);
     this.underscoreInterval = window.setInterval(this.handleToggleUnderscore, 250);
+  }
+
+  componentDidUpdate() {
+    if (this.state.currentMessage && this.state.iterator === this.state.currentMessage.length) {
+      this.setState({
+        currentMessage: this.state.messages[this.state.messages.indexOf(this.state.currentMessage) + 1],
+        iterator: 0,
+        splitChildren: this.state.currentMessage.split(''),
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -65,6 +84,7 @@ class AppearTyping extends React.Component<Props, State> {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className={getStyle(this.props)}>
         <Text textIndent="30px" fontSize="sm">
@@ -78,7 +98,7 @@ class AppearTyping extends React.Component<Props, State> {
   // tslint:disable-next-line:new-parens
   myInterval: number | undefined;
 
-  splitChildren = this.props.children.split('');
+  splitChildren = [];
   underscoreInterval: number | undefined;
 }
 
