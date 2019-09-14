@@ -24,7 +24,7 @@ const ContactMe = (props: any) => <LazyContactMeRoute {...props} />;
 const App = () => {
   return (
     <div>
-      <BrowserRouter basename="/weddingPlannerSite">
+      <BrowserRouter>
         <React.Suspense fallback={<LoadingPage />}>
           <div>
             <Header />

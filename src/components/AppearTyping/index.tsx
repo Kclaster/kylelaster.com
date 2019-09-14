@@ -36,6 +36,7 @@ const getStyle = ({
   width = 'auto',
 }: WrapperProps) => css({
   marginTop: SPACE_SIZES.md,
+  textIndent: '30px',
   width,
 });
 
@@ -113,7 +114,7 @@ class AppearTyping extends React.Component<Props, State> {
   render() {
     return (
       <div className={getStyle(this.props)}>
-        <Text textIndent="30px" fontSize="sm">
+        <Text fontSize="sm">
           {this.state.renderedLetters.join('')}
           {' '}
           <UnderScore shouldRender={this.state.shouldRender} />

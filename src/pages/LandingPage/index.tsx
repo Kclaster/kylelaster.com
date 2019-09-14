@@ -8,7 +8,6 @@ import Flex from '../../components/Flex';
 import GlossedWindow from '../../components/GlossedWindow';
 import Page from '../../components/Page';
 import Snippet from '../../components/Snippet';
-import Space from '../../components/Space';
 import Heading1 from '../../components/Text/Heading1';
 const mobileBackgroundImage = require('../../assets/pictures/bricks_to_heaven.png');
 const desktopBackgroundImage = require('../../assets/pictures/road.png');

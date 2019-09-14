@@ -1,5 +1,4 @@
 // External Dependencies
-import styled from '@emotion/styled';
 import React from 'react';
 
 // Internal Dependencies
@@ -22,7 +21,7 @@ const getStyle = ({ shouldRender }: Props) => css({
 // Component Definition
 const UnderScore: React.FC<Props> = (props) => {
   return (
-    <div className={getStyle(props)} />
+    <span className={getStyle(props)} />
   );
 };
 
