@@ -22,6 +22,13 @@ interface State {
   renderedLetters: string[];
   shouldRender: boolean;
   splitChildren: string[];
+  time: Time;
+}
+
+interface Time {
+  timeBetweenLettersRendered: number;
+  timeBetweenMessages: number;
+  timeBetweenUndscoreRender: number;
 }
 
 // Local Variable
@@ -43,24 +50,26 @@ class AppearTyping extends React.Component<Props, State> {
       renderedLetters: [],
       shouldRender: false,
       splitChildren: [],
+      time: {
+        timeBetweenLettersRendered: 12,
+        timeBetweenMessages: 3000,
+        timeBetweenUndscoreRender: 250,
+      },
     };
   }
 
   componentDidMount() {
     this.setState({
-      currentMessage: this.state.messages[0],
+      currentMessage: this.props.messages[0],
+      splitChildren: this.props.messages[0].split(''),
     });
-    this.myInterval = window.setInterval(this.handleMoveCharacters, 12);
-    this.underscoreInterval = window.setInterval(this.handleToggleUnderscore, 250);
+    this.myInterval = window.setInterval(this.handleMoveCharacters, this.state.time.timeBetweenLettersRendered);
+    this.underscoreInterval = window.setInterval(this.handleToggleUnderscore, this.state.time.timeBetweenUndscoreRender);
   }
 
   componentDidUpdate() {
-    if (this.state.currentMessage && this.state.iterator === this.state.currentMessage.length) {
-      this.setState({
-        currentMessage: this.state.messages[this.state.messages.indexOf(this.state.currentMessage) + 1],
-        iterator: 0,
-        splitChildren: this.state.currentMessage.split(''),
-      });
+    if (this.state.currentMessage && this.state.iterator === this.state.currentMessage.length && !this.myTimeout) {
+      this.myTimeout = window.setTimeout(this.handleNextMessage, this.state.time.timeBetweenMessages);
     }
   }
 
@@ -68,10 +77,28 @@ class AppearTyping extends React.Component<Props, State> {
     clearInterval(this.myInterval);
   }
 
+  handleNextMessage = () => {
+    this.myTimeout = 0;
+    this.setState({
+      currentMessage: this.props.messages[this.props.messages.indexOf(this.state.currentMessage) + 1],
+      iterator: 0,
+    }, () => {
+      if (this.state.currentMessage) {
+        this.setState({
+          renderedLetters: [],
+          splitChildren: this.state.currentMessage.split(''),
+        });
+      } else {
+        clearInterval(this.myInterval);
+      }
+    });
+  }
+
   handleMoveCharacters = () => {
-    const nextLetter = this.splitChildren.shift();
+    const nextLetter = this.state.splitChildren.shift();
     if (nextLetter) {
       this.setState({
+        iterator: this.state.renderedLetters.length + 1,
         renderedLetters: [...this.state.renderedLetters, nextLetter],
       });
     }
@@ -84,7 +111,6 @@ class AppearTyping extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className={getStyle(this.props)}>
         <Text textIndent="30px" fontSize="sm">
@@ -97,7 +123,7 @@ class AppearTyping extends React.Component<Props, State> {
   }
   // tslint:disable-next-line:new-parens
   myInterval: number | undefined;
-
+  myTimeout: number | undefined;
   splitChildren = [];
   underscoreInterval: number | undefined;
 }
