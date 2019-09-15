@@ -22,9 +22,9 @@ const StyledLink = styled(Link)({
 const NavBar: React.FC = () => {
   return (
     <Wrapper>
-      <StyledLink to={`/${ROUTES.BLOG}`}>Blog</StyledLink>
-      <StyledLink to={`/${ROUTES.CLIENT_PORTAL}`}>Client Portal</StyledLink>
-      <StyledLink to={`/${ROUTES.CONTACT_ME}`}>Contact Me</StyledLink>
+      <StyledLink to={`${ROUTES.BLOG}`}>Blog</StyledLink>
+      <StyledLink to={`${ROUTES.CLIENT_PORTAL}`}>Client Portal</StyledLink>
+      <StyledLink to={`${ROUTES.CONTACT_ME}`}>Contact Me</StyledLink>
     </Wrapper>
   );
 };

@@ -8,11 +8,14 @@ import {
   PADDING_SIZES,
 } from '../../constants/sizes';
 import { BASE_COLORS } from '../../constants/styles';
+import Heading2 from '../Text/Heading2';
+import Paragraph from '../Text/Paragraph';
 import HidingText from './HidingText';
 
 // Local Typings
 export interface StyledImgProps {
   image: string;
+  shouldHideText?: boolean;
   text: string;
   title: string;
 }
@@ -50,7 +53,10 @@ const TextWrapper = styled.div({
   },
 });
 
-const Snippet: React.FC<StyledImgProps> = (props) => {
+const Snippet: React.FC<StyledImgProps> = ({
+  shouldHideText = false,
+  ...props
+}) => {
   const [isHovering, setIsHovering] = useState(false);
 
   function handleMouseEnter() {
@@ -67,33 +73,40 @@ const Snippet: React.FC<StyledImgProps> = (props) => {
         alt="background weddings logo"
         src={props.image}
       />
-      <TextWrapper
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <HidingText
-          fontSize="md"
-          isHovering={isHovering}
-          textDecoration="underline"
-        >
-          {props.title}
-        </HidingText>
-        <HidingText
-          fontSize="sm"
-          isHovering={isHovering}
+      {shouldHideText ? (
+        <TextWrapper
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <HidingText
-            as="span"
+            fontSize="md"
+            isHovering={isHovering}
+            textDecoration="underline"
+          >
+            {props.title}
+          </HidingText>
+          <HidingText
             fontSize="sm"
-            fontWeight={700}
             isHovering={isHovering}
           >
-            Technologies Used:
+            <HidingText
+              as="span"
+              fontSize="sm"
+              fontWeight={700}
+              isHovering={isHovering}
+            >
+              Technologies Used:
             {' '}
+            </HidingText>
+            {props.text}
           </HidingText>
-          {props.text}
-        </HidingText>
-      </TextWrapper>
+        </TextWrapper>
+      ) : (
+          <>
+            <Heading2>{props.title}</Heading2>
+            <Paragraph>{props.text}</Paragraph>
+          </>
+        )}
     </Wrapper>
   );
 };

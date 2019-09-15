@@ -76,6 +76,8 @@ class AppearTyping extends React.Component<Props, State> {
 
   componentWillUnmount() {
     clearInterval(this.myInterval);
+    clearInterval(this.myTimeout);
+    clearInterval(this.underscoreInterval);
   }
 
   handleNextMessage = () => {
