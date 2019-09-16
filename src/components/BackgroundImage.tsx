@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 // Internal Dependencies
-import { BASE_COLORS } from '../constants/styles'
+import { BASE_COLORS } from '../constants/styles';
 
 // Local Typings
 interface Props {
@@ -12,23 +12,24 @@ interface Props {
 }
 
 // Local Variables
-const ImageContainer = styled.div<Props>((props) => ({
-  background:  `url(${props.desktopBackgroundImage}) ${BASE_COLORS.WHITE}`,
+const ImageContainer = styled.div<Props>(props => ({
+  background: `url(${props.desktopBackgroundImage}) ${BASE_COLORS.WHITE}`,
   backgroundSize: 'cover',
   height: '100vh',
-  width: '100vw',
   position: 'fixed',
+  width: '100vw',
+
   zIndex: -1,
   '@media(max-width: 450px)': {
-    background:  `url(${props.mobileBackgroundImage}) ${BASE_COLORS.WHITE}`,
-  }
+    background: `url(${props.mobileBackgroundImage}) ${BASE_COLORS.WHITE}`,
+  },
 }));
 
 // Component Definition
-const BackgroundImage:React.FC<Props> = (props) => {
+const BackgroundImage: React.FC<Props> = (props) => {
   return (
-    <ImageContainer {...props}/>
-  )
-}
+    <ImageContainer {...props} />
+  );
+};
 
 export default BackgroundImage;

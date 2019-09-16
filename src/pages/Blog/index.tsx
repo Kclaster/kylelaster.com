@@ -1,20 +1,34 @@
 // External Dependencies
 import React from 'react';
-import Page from '../../components/Page';
-import Snippet from '../../components/Snippet';
-const reactLogo = require('../../assets/pictures/react.png');
 
 // Internal Dependencies
+import Flex from '../../components/Flex';
+import Page from '../../components/Page';
+import PageBanner from '../../components/PageBanner';
+import Snippet from '../../components/Snippet';
+const reactLogo = require('../../assets/pictures/react.png');
+const confusedBoyImage = require('../../assets/pictures/confused_kid.png');
 
 // Component Definition
 const Blog: React.FC = () => {
   return (
     <Page>
-      <Snippet
-        image={reactLogo}
-        text="A place to store ideas and code worth storing."
-        title="ReactJS"
+      <PageBanner
+        alt="Confused boy"
+        src={confusedBoyImage}
       />
+      <Flex justifyContent="space-between">
+        <Snippet
+          image={reactLogo}
+          text="A place to store ideas and code worth storing."
+          title="ReactJS"
+        />
+        <Snippet
+          image={reactLogo}
+          text="A place to store ideas and code worth storing."
+          title="ReactJS"
+        />
+      </Flex>
     </Page>
   );
 };
