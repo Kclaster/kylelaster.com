@@ -17,7 +17,8 @@ export type PaddingSizes =
   'sm' |
   'md' |
   'lg' |
-  'xl';
+  'xl' |
+  'xxl';
 
 // Exports
 export const HEADER_DIMENSIONS = {
@@ -33,7 +34,7 @@ export const NAVBAR_DIMENSIONS = {
 };
 
 export const FONT_SIZES: {
-  [k in PaddingSizes]: string;
+  [k in FontSizes]: string;
 } = {
   lg: '36px',
   md: '24px',
@@ -42,12 +43,13 @@ export const FONT_SIZES: {
 };
 
 export const PADDING_SIZES: {
-  [k in FontSizes]: string;
+  [k in PaddingSizes]: string;
 } = {
   lg: '36px',
   md: '24px',
   sm: '12px',
   xl: '72px',
+  xxl: '95px',
 };
 
 // Export Functions

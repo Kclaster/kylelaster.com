@@ -1,8 +1,8 @@
 // External Dependencies
-import React from 'react';
-import {Link as RouterLink} from 'react-router-dom'
 import styled from '@emotion/styled';
-import { BASE_COLORS, PADDING, BORDERS } from '../constants/styles';
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { BASE_COLORS, BORDERS, PADDING } from '../constants/styles';
 // Internal Dependencies
 
 // Local Typings
@@ -12,15 +12,16 @@ interface Props {
 
 // Local Variables
 const StyledRouterLink = styled(RouterLink)({
-  color: BASE_COLORS.WHITE,
-  textDecoration: 'none',
-  paddingBottom: PADDING.MD,
   borderBottom: BORDERS.HIDDEN,
+  color: BASE_COLORS.WHITE,
+  paddingBottom: PADDING.MD,
+  textDecoration: 'none',
+
   '&:hover': {
     borderBottom: BORDERS.STANDARD,
-  }
+  },
 
-})
+});
 
 // Component Definition
 const Link: React.FC<Props> = (props) => {
@@ -28,7 +29,7 @@ const Link: React.FC<Props> = (props) => {
     <StyledRouterLink to={props.to}>
       {props.children}
     </StyledRouterLink>
-  )
-}
+  );
+};
 
 export default Link;

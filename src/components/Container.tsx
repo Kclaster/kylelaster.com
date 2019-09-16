@@ -7,7 +7,7 @@ import { PADDING_SIZES } from '../constants/sizes';
 
 // Local Variable
 const Wrapper = styled.div({
-  padding: PADDING_SIZES.md,
+  padding: PADDING_SIZES.xxl,
 });
 
 // Component Definition

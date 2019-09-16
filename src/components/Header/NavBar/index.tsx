@@ -10,7 +10,7 @@ import Link from '../../Link';
 // Local Variables
 const Wrapper = styled.div({
   display: 'flex',
-  justifyContent: 'space-around',
+  justifyContent: 'space-between',
   width: NAVBAR_DIMENSIONS.WIDTH,
 });
 

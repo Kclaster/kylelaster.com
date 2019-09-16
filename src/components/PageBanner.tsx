@@ -8,7 +8,7 @@ import React from 'react';
 const Wrapper = styled.div({
   display: 'flex',
   justifyContent: 'center',
-  width: '100vw',
+  width: '100%',
 });
 
 const StyledImage = styled.img({
