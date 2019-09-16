@@ -4,7 +4,7 @@ import React from 'react';
 // Internal Dependencies
 import {
   getSpace,
-  SpaceSizes,
+  PaddingSizes,
 } from '../constants/sizes';
 
 // Local Typings
@@ -12,20 +12,20 @@ interface Props extends SpaceProps {
   children: React.ReactElement<any>;
 }
 export interface SpaceProps {
-  margin?: SpaceSizes;
-  marginBottom?: SpaceSizes;
-  marginLeft?: SpaceSizes;
-  marginRight?: SpaceSizes;
-  marginTop?: SpaceSizes;
-  marginX?: SpaceSizes;
-  marginY?: SpaceSizes;
-  padding?: SpaceSizes;
-  paddingBottom?: SpaceSizes;
-  paddingLeft?: SpaceSizes;
-  paddingRight?: SpaceSizes;
-  paddingTop?: SpaceSizes;
-  paddingX?: SpaceSizes;
-  paddingY?: SpaceSizes;
+  margin?: PaddingSizes;
+  marginBottom?: PaddingSizes;
+  marginLeft?: PaddingSizes;
+  marginRight?: PaddingSizes;
+  marginTop?: PaddingSizes;
+  marginX?: PaddingSizes;
+  marginY?: PaddingSizes;
+  padding?: PaddingSizes;
+  paddingBottom?: PaddingSizes;
+  paddingLeft?: PaddingSizes;
+  paddingRight?: PaddingSizes;
+  paddingTop?: PaddingSizes;
+  paddingX?: PaddingSizes;
+  paddingY?: PaddingSizes;
 }
 
 // Component Definition

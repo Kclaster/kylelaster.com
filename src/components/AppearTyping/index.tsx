@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
-import { BasePercents, SPACE_SIZES } from '../../constants/sizes';
+import { BasePercents, PADDING_SIZES } from '../../constants/sizes';
 import Text from '../Text';
 import UnderScore from './UnderScore';
 // Local Typings
@@ -35,7 +35,7 @@ interface Time {
 const getStyle = ({
   width = 'auto',
 }: WrapperProps) => css({
-  marginTop: SPACE_SIZES.md,
+  marginTop: PADDING_SIZES.md,
   textIndent: '30px',
   width,
 });

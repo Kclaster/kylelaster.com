@@ -13,7 +13,7 @@ export type FontSizes =
   'lg' |
   'xl';
 
-export type SpaceSizes =
+export type PaddingSizes =
   'sm' |
   'md' |
   'lg' |
@@ -32,13 +32,8 @@ export const NAVBAR_DIMENSIONS = {
   WIDTH: '315px',
 };
 
-export const PADDING_SIZES = {
-  md: '30px',
-  sm: '15px',
-};
-
 export const FONT_SIZES: {
-  [k in FontSizes]: string;
+  [k in PaddingSizes]: string;
 } = {
   lg: '36px',
   md: '24px',
@@ -46,7 +41,7 @@ export const FONT_SIZES: {
   xl: '40px',
 };
 
-export const SPACE_SIZES: {
+export const PADDING_SIZES: {
   [k in FontSizes]: string;
 } = {
   lg: '36px',
@@ -57,11 +52,11 @@ export const SPACE_SIZES: {
 
 // Export Functions
 // tslint:disable-next-line:prefer-array-literal
-export function getSpace(spaces: Array<SpaceSizes | undefined>) {
+export function getSpace(spaces: Array<PaddingSizes | undefined>) {
   const space = spaces.find(val => !!val);
   if (!space) {
     return undefined;
   }
 
-  return SPACE_SIZES[space];
+  return PADDING_SIZES[space];
 }

@@ -2,6 +2,7 @@
 import React from 'react';
 
 // Internal Dependencies
+import Container from '../../components/Container';
 import Flex from '../../components/Flex';
 import Page from '../../components/Page';
 import PageBanner from '../../components/PageBanner';
@@ -13,22 +14,24 @@ const confusedBoyImage = require('../../assets/pictures/confused_kid.png');
 const Blog: React.FC = () => {
   return (
     <Page>
-      <PageBanner
-        alt="Confused boy"
-        src={confusedBoyImage}
-      />
-      <Flex justifyContent="space-between">
-        <Snippet
-          image={reactLogo}
-          text="A place to store ideas and code worth storing."
-          title="ReactJS"
+      <Container>
+        <PageBanner
+          alt="Confused boy"
+          src={confusedBoyImage}
         />
-        <Snippet
-          image={reactLogo}
-          text="A place to store ideas and code worth storing."
-          title="ReactJS"
-        />
-      </Flex>
+        <Flex justifyContent="space-between">
+          <Snippet
+            image={reactLogo}
+            text="A place to store ideas and code worth storing."
+            title="ReactJS"
+          />
+          <Snippet
+            image={reactLogo}
+            text="A place to store ideas and code worth storing."
+            title="ReactJS"
+          />
+        </Flex>
+      </Container>
     </Page>
   );
 };
