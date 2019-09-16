@@ -12,13 +12,16 @@ import Heading2 from '../Text/Heading2';
 import Paragraph from '../Text/Paragraph';
 import HidingText from './HidingText';
 
+// TODO: variant should be strongly typed
 // Local Typings
 export interface StyledImgProps {
   image: string;
-  shouldHideText?: boolean;
   text: string;
   title: string;
+  variant?: SnippetVariants;
 }
+
+export type SnippetVariants = 'normal' | 'hidden';
 
 // Local Variable
 const StyledImg = styled.img({
@@ -28,6 +31,7 @@ const StyledImg = styled.img({
 const Wrapper = styled.div({
   alignItems: 'center',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   padding: PADDING_SIZES.sm,
   position: 'relative',
@@ -54,7 +58,7 @@ const TextWrapper = styled.div({
 });
 
 const Snippet: React.FC<StyledImgProps> = ({
-  shouldHideText = false,
+  variant = 'normal',
   ...props
 }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -73,7 +77,7 @@ const Snippet: React.FC<StyledImgProps> = ({
         alt="background weddings logo"
         src={props.image}
       />
-      {shouldHideText ? (
+      {variant === 'hidden' ? (
         <TextWrapper
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

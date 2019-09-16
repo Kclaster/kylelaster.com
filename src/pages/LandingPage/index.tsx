@@ -34,6 +34,7 @@ const LandingPage = () => {
               image={backgroundWeddingsSnippet}
               title="Background Weddings"
               text="AWS, JavaScript, NodeJS, ReactJS"
+              variant="hidden"
             />
           </Flex>
         </GlossedWindow>
