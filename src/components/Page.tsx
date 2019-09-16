@@ -1,21 +1,26 @@
 // External Dependencies
-import styled from '@emotion/styled';
+import { BackgroundImageProperty } from 'csstype';
+import { css } from 'emotion';
 import React from 'react';
 
-// Internal Dependencies
+// Local Typings
+interface StyleProps {
+  backgroundImage?: BackgroundImageProperty;
+}
 
 // Local Variables
-const Wrapper = styled.div({
+const getStyle = ({ backgroundImage }: StyleProps) => css({
+  backgroundImage,
   height: '100vh',
   width: '100vw',
 });
 
 // Component Definition
-const Page: React.FC = (props) => {
+const Page: React.FC<StyleProps> = (props) => {
   return (
-    <Wrapper>
+    <div className={getStyle(props)}>
       {props.children}
-    </Wrapper>
+    </div>
   );
 };
 
