@@ -1,9 +1,0 @@
-
-@font-face {
-    font-family: "Red Hat Text";
-    src: local('Red Hat Text'), url("./assets/fonts/RedHatText-Regular.ttf");
-}
-
-p, a, h1, h2, h3, h4, h5, h6 {
-    font-family: "Red Hat Text"
-}
