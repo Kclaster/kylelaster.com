@@ -1,6 +1,38 @@
 type Post {
+  content: String!
+  createdAt: DateTime! @createdAt
   id: ID! @id
+  language: String!
   published: Boolean! @default(value: false)
   title: String!
-  content: String!
+  updatedAt: DateTime! @updatedAt
+  visitors: Int! @default(value: 0)
 }
+
+type Video {
+  createdAt: DateTime! @createdAt
+  id: ID! @id
+  language: String!
+  published: Boolean! @default(value: false)
+  title: String!
+  updatedAt: DateTime! @updatedAt
+}
+
+type Comment {
+  id: ID! @id
+  title: String!
+  content: String
+  user: User! @relation(link: INLINE)
+}
+
+type User {
+  id: ID! @id
+  username: String! @unique
+  password: String!
+  emailAddress: String!
+  comments: [Comment]!
+}
+
+
+
+

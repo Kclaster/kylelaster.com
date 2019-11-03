@@ -1,9 +1,5 @@
 const Home = () => {
-  return (
-    <div>
-      <p>boiler_plate</p>
-    </div>
-  )
-}
+  <h1>Hello world!</h1>
+};
 
 export default Home;

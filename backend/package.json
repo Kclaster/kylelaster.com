@@ -1,7 +1,8 @@
 {
   "name": "kylelaster",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "deploy": "prisma deploy"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
