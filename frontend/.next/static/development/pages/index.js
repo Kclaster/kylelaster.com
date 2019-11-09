@@ -49,11 +49,12 @@ var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+// Component Definition
 var Home = function Home() {
-  __jsx("h1", {
+  return __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 2
+      lineNumber: 4
     },
     __self: this
   }, "Hello world!");
@@ -63,7 +64,7 @@ var Home = function Home() {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!********************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5CUsers%5Ckylel%5Ccode%5Cfreelance%5Ckylelaster.com%5Cfrontend%5Cpages%5Cindex.tsx ***!
   \********************************************************************************************************************************************************/
@@ -86,5 +87,5 @@ module.exports = dll_ea92a4d9664833a26066;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
