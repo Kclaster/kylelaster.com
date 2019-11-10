@@ -10,6 +10,10 @@ type AggregatePost {
   count: Int!
 }
 
+type AggregateSnippet {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -258,6 +262,12 @@ type Mutation {
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   deletePost(where: PostWhereUniqueInput!): Post
   deleteManyPosts(where: PostWhereInput): BatchPayload!
+  createSnippet(data: SnippetCreateInput!): Snippet!
+  updateSnippet(data: SnippetUpdateInput!, where: SnippetWhereUniqueInput!): Snippet
+  updateManySnippets(data: SnippetUpdateManyMutationInput!, where: SnippetWhereInput): BatchPayload!
+  upsertSnippet(where: SnippetWhereUniqueInput!, create: SnippetCreateInput!, update: SnippetUpdateInput!): Snippet!
+  deleteSnippet(where: SnippetWhereUniqueInput!): Snippet
+  deleteManySnippets(where: SnippetWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -483,6 +493,9 @@ type Query {
   post(where: PostWhereUniqueInput!): Post
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  snippet(where: SnippetWhereUniqueInput!): Snippet
+  snippets(where: SnippetWhereInput, orderBy: SnippetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Snippet]!
+  snippetsConnection(where: SnippetWhereInput, orderBy: SnippetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SnippetConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -492,9 +505,212 @@ type Query {
   node(id: ID!): Node
 }
 
+type Snippet {
+  id: ID!
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  gitLink: String
+  link: String
+}
+
+type SnippetConnection {
+  pageInfo: PageInfo!
+  edges: [SnippetEdge]!
+  aggregate: AggregateSnippet!
+}
+
+input SnippetCreateInput {
+  id: ID
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  gitLink: String
+  link: String
+}
+
+type SnippetEdge {
+  node: Snippet!
+  cursor: String!
+}
+
+enum SnippetOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  image_ASC
+  image_DESC
+  largeImage_ASC
+  largeImage_DESC
+  gitLink_ASC
+  gitLink_DESC
+  link_ASC
+  link_DESC
+}
+
+type SnippetPreviousValues {
+  id: ID!
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  gitLink: String
+  link: String
+}
+
+type SnippetSubscriptionPayload {
+  mutation: MutationType!
+  node: Snippet
+  updatedFields: [String!]
+  previousValues: SnippetPreviousValues
+}
+
+input SnippetSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SnippetWhereInput
+  AND: [SnippetSubscriptionWhereInput!]
+  OR: [SnippetSubscriptionWhereInput!]
+  NOT: [SnippetSubscriptionWhereInput!]
+}
+
+input SnippetUpdateInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  gitLink: String
+  link: String
+}
+
+input SnippetUpdateManyMutationInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  gitLink: String
+  link: String
+}
+
+input SnippetWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  largeImage: String
+  largeImage_not: String
+  largeImage_in: [String!]
+  largeImage_not_in: [String!]
+  largeImage_lt: String
+  largeImage_lte: String
+  largeImage_gt: String
+  largeImage_gte: String
+  largeImage_contains: String
+  largeImage_not_contains: String
+  largeImage_starts_with: String
+  largeImage_not_starts_with: String
+  largeImage_ends_with: String
+  largeImage_not_ends_with: String
+  gitLink: String
+  gitLink_not: String
+  gitLink_in: [String!]
+  gitLink_not_in: [String!]
+  gitLink_lt: String
+  gitLink_lte: String
+  gitLink_gt: String
+  gitLink_gte: String
+  gitLink_contains: String
+  gitLink_not_contains: String
+  gitLink_starts_with: String
+  gitLink_not_starts_with: String
+  gitLink_ends_with: String
+  gitLink_not_ends_with: String
+  link: String
+  link_not: String
+  link_in: [String!]
+  link_not_in: [String!]
+  link_lt: String
+  link_lte: String
+  link_gt: String
+  link_gte: String
+  link_contains: String
+  link_not_contains: String
+  link_starts_with: String
+  link_not_starts_with: String
+  link_ends_with: String
+  link_not_ends_with: String
+  AND: [SnippetWhereInput!]
+  OR: [SnippetWhereInput!]
+  NOT: [SnippetWhereInput!]
+}
+
+input SnippetWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  snippet(where: SnippetSubscriptionWhereInput): SnippetSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload
 }

@@ -5,6 +5,14 @@ type Query {
 }
 
 type Mutation {
+  createSnippet(
+    title: String
+    description: String
+    image: String
+    largeImage: String
+    gitLink: String
+    link: String
+  ): Snippet!
   createDraft(title: String!, content: String): Post
   deletePost(id: ID!): Post
   publish(id: ID!): Post
@@ -15,4 +23,14 @@ type Post {
   published: Boolean!
   title: String!
   content: String!
+}
+
+type Snippet {
+  id: ID!
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  gitLink: String
+  link: String
 }

@@ -22,7 +22,7 @@ export type PaddingSizes =
 
 // Exports
 export const HEADER_DIMENSIONS = {
-  HEIGHT: '5vw',
+  HEIGHT: '5vh',
 };
 
 export const IMAGE_SIZES = {

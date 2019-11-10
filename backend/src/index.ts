@@ -15,8 +15,8 @@ const resolvers = {
     },
   },
   Mutation: {
-    createDraft(parent, { title, content }, context: Context) {
-      return context.prisma.createPost({ title, content })
+    createDraft(parent, { title, content, language }, context: Context) {
+      return context.prisma.createPost({ title, content, language })
     },
     deletePost(parent, { id }, context: Context) {
       return context.prisma.deletePost({ id })

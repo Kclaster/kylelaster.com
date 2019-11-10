@@ -21,6 +21,9 @@ const StyledLink = styled(Link)({
 const NavBar: React.FC = () => {
   return (
     <Wrapper>
+      <StyledLink href="/blog">Blog</StyledLink>
+      <StyledLink href="/contact-me">Contact Me</StyledLink>
+      <StyledLink href="/admin">Admin</StyledLink>
     </Wrapper>
   );
 };

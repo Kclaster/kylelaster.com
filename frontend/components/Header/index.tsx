@@ -11,11 +11,12 @@ import NavBar from './NavBar';
 const Wrapper = styled.div({
   alignItems: 'flex-end',
   display: 'flex',
-  height: HEADER_DIMENSIONS.HEIGHT,
+  height: `${HEADER_DIMENSIONS.HEIGHT}`,
   justifyContent: 'space-between',
   padding: `0 ${PADDING_SIZES.sm}`,
   position: 'fixed',
   width: '100vw',
+  top: '0'
 });
 
 // Component Definition

@@ -33,6 +33,16 @@ type User {
   comments: [Comment]!
 }
 
+type Snippet {
+  id: ID! @id
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  gitLink: String
+  link: String
+}
+
 
 
 

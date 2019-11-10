@@ -18,6 +18,7 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   comment: (where?: CommentWhereInput) => Promise<boolean>;
   post: (where?: PostWhereInput) => Promise<boolean>;
+  snippet: (where?: SnippetWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
   video: (where?: VideoWhereInput) => Promise<boolean>;
 }
@@ -79,6 +80,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => PostConnectionPromise;
+  snippet: (where: SnippetWhereUniqueInput) => SnippetNullablePromise;
+  snippets: (args?: {
+    where?: SnippetWhereInput;
+    orderBy?: SnippetOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Snippet>;
+  snippetsConnection: (args?: {
+    where?: SnippetWhereInput;
+    orderBy?: SnippetOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => SnippetConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -155,6 +175,22 @@ export interface Prisma {
   }) => PostPromise;
   deletePost: (where: PostWhereUniqueInput) => PostPromise;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
+  createSnippet: (data: SnippetCreateInput) => SnippetPromise;
+  updateSnippet: (args: {
+    data: SnippetUpdateInput;
+    where: SnippetWhereUniqueInput;
+  }) => SnippetPromise;
+  updateManySnippets: (args: {
+    data: SnippetUpdateManyMutationInput;
+    where?: SnippetWhereInput;
+  }) => BatchPayloadPromise;
+  upsertSnippet: (args: {
+    where: SnippetWhereUniqueInput;
+    create: SnippetCreateInput;
+    update: SnippetUpdateInput;
+  }) => SnippetPromise;
+  deleteSnippet: (where: SnippetWhereUniqueInput) => SnippetPromise;
+  deleteManySnippets: (where?: SnippetWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -202,6 +238,9 @@ export interface Subscription {
   post: (
     where?: PostSubscriptionWhereInput
   ) => PostSubscriptionPayloadSubscription;
+  snippet: (
+    where?: SnippetSubscriptionWhereInput
+  ) => SnippetSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -244,6 +283,22 @@ export type PostOrderByInput =
   | "visitors_ASC"
   | "visitors_DESC";
 
+export type SnippetOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "image_ASC"
+  | "image_DESC"
+  | "largeImage_ASC"
+  | "largeImage_DESC"
+  | "gitLink_ASC"
+  | "gitLink_DESC"
+  | "link_ASC"
+  | "link_DESC";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -270,89 +325,21 @@ export type VideoOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface CommentUpdateInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-  user?: Maybe<UserUpdateOneRequiredWithoutCommentsInput>;
+export interface UserCreateWithoutCommentsInput {
+  id?: Maybe<ID_Input>;
+  username: String;
+  password: String;
+  emailAddress: String;
 }
 
 export type CommentWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput;
-  create: UserCreateWithoutCommentsInput;
+export interface CommentUpdateWithoutUserDataInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
 }
-
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  username?: Maybe<String>;
-  username_not?: Maybe<String>;
-  username_in?: Maybe<String[] | String>;
-  username_not_in?: Maybe<String[] | String>;
-  username_lt?: Maybe<String>;
-  username_lte?: Maybe<String>;
-  username_gt?: Maybe<String>;
-  username_gte?: Maybe<String>;
-  username_contains?: Maybe<String>;
-  username_not_contains?: Maybe<String>;
-  username_starts_with?: Maybe<String>;
-  username_not_starts_with?: Maybe<String>;
-  username_ends_with?: Maybe<String>;
-  username_not_ends_with?: Maybe<String>;
-  password?: Maybe<String>;
-  password_not?: Maybe<String>;
-  password_in?: Maybe<String[] | String>;
-  password_not_in?: Maybe<String[] | String>;
-  password_lt?: Maybe<String>;
-  password_lte?: Maybe<String>;
-  password_gt?: Maybe<String>;
-  password_gte?: Maybe<String>;
-  password_contains?: Maybe<String>;
-  password_not_contains?: Maybe<String>;
-  password_starts_with?: Maybe<String>;
-  password_not_starts_with?: Maybe<String>;
-  password_ends_with?: Maybe<String>;
-  password_not_ends_with?: Maybe<String>;
-  emailAddress?: Maybe<String>;
-  emailAddress_not?: Maybe<String>;
-  emailAddress_in?: Maybe<String[] | String>;
-  emailAddress_not_in?: Maybe<String[] | String>;
-  emailAddress_lt?: Maybe<String>;
-  emailAddress_lte?: Maybe<String>;
-  emailAddress_gt?: Maybe<String>;
-  emailAddress_gte?: Maybe<String>;
-  emailAddress_contains?: Maybe<String>;
-  emailAddress_not_contains?: Maybe<String>;
-  emailAddress_starts_with?: Maybe<String>;
-  emailAddress_not_starts_with?: Maybe<String>;
-  emailAddress_ends_with?: Maybe<String>;
-  emailAddress_not_ends_with?: Maybe<String>;
-  comments_every?: Maybe<CommentWhereInput>;
-  comments_some?: Maybe<CommentWhereInput>;
-  comments_none?: Maybe<CommentWhereInput>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
-export type VideoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface PostCreateInput {
   content: String;
@@ -363,101 +350,15 @@ export interface PostCreateInput {
   visitors?: Maybe<Int>;
 }
 
-export interface CommentUpdateWithoutUserDataInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-}
-
-export interface CommentUpdateManyMutationInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-}
-
-export interface VideoWhereInput {
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  language?: Maybe<String>;
-  language_not?: Maybe<String>;
-  language_in?: Maybe<String[] | String>;
-  language_not_in?: Maybe<String[] | String>;
-  language_lt?: Maybe<String>;
-  language_lte?: Maybe<String>;
-  language_gt?: Maybe<String>;
-  language_gte?: Maybe<String>;
-  language_contains?: Maybe<String>;
-  language_not_contains?: Maybe<String>;
-  language_starts_with?: Maybe<String>;
-  language_not_starts_with?: Maybe<String>;
-  language_ends_with?: Maybe<String>;
-  language_not_ends_with?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  published_not?: Maybe<Boolean>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<VideoWhereInput[] | VideoWhereInput>;
-  OR?: Maybe<VideoWhereInput[] | VideoWhereInput>;
-  NOT?: Maybe<VideoWhereInput[] | VideoWhereInput>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
 export interface CommentUpdateWithWhereUniqueWithoutUserInput {
   where: CommentWhereUniqueInput;
   data: CommentUpdateWithoutUserDataInput;
 }
 
-export type PostWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput;
+  create: UserCreateWithoutCommentsInput;
+}
 
 export interface CommentUpdateManyWithoutUserInput {
   create?: Maybe<
@@ -482,10 +383,15 @@ export interface CommentUpdateManyWithoutUserInput {
   >;
 }
 
-export interface VideoUpdateManyMutationInput {
-  language?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  title?: Maybe<String>;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface UserUpdateInput {
@@ -493,96 +399,6 @@ export interface UserUpdateInput {
   password?: Maybe<String>;
   emailAddress?: Maybe<String>;
   comments?: Maybe<CommentUpdateManyWithoutUserInput>;
-}
-
-export interface CommentWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  user?: Maybe<UserWhereInput>;
-  AND?: Maybe<CommentWhereInput[] | CommentWhereInput>;
-  OR?: Maybe<CommentWhereInput[] | CommentWhereInput>;
-  NOT?: Maybe<CommentWhereInput[] | CommentWhereInput>;
-}
-
-export interface CommentCreateWithoutUserInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  content?: Maybe<String>;
-}
-
-export interface VideoCreateInput {
-  id?: Maybe<ID_Input>;
-  language: String;
-  published?: Maybe<Boolean>;
-  title: String;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  username?: Maybe<String>;
-}>;
-
-export interface CommentUpdateManyWithWhereNestedInput {
-  where: CommentScalarWhereInput;
-  data: CommentUpdateManyDataInput;
-}
-
-export interface CommentCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  content?: Maybe<String>;
-  user: UserCreateOneWithoutCommentsInput;
-}
-
-export interface CommentUpsertWithWhereUniqueWithoutUserInput {
-  where: CommentWhereUniqueInput;
-  update: CommentUpdateWithoutUserDataInput;
-  create: CommentCreateWithoutUserInput;
-}
-
-export interface UserCreateOneWithoutCommentsInput {
-  create?: Maybe<UserCreateWithoutCommentsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface PostSubscriptionWhereInput {
@@ -596,11 +412,25 @@ export interface PostSubscriptionWhereInput {
   NOT?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
 }
 
-export interface UserCreateWithoutCommentsInput {
+export type VideoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface CommentSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CommentWhereInput>;
+  AND?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
+  OR?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
+  NOT?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
+}
+
+export interface CommentCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
-  username: String;
-  password: String;
-  emailAddress: String;
+  title: String;
+  content?: Maybe<String>;
 }
 
 export interface PostWhereInput {
@@ -691,6 +521,78 @@ export interface PostWhereInput {
   NOT?: Maybe<PostWhereInput[] | PostWhereInput>;
 }
 
+export interface VideoWhereInput {
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  language?: Maybe<String>;
+  language_not?: Maybe<String>;
+  language_in?: Maybe<String[] | String>;
+  language_not_in?: Maybe<String[] | String>;
+  language_lt?: Maybe<String>;
+  language_lte?: Maybe<String>;
+  language_gt?: Maybe<String>;
+  language_gte?: Maybe<String>;
+  language_contains?: Maybe<String>;
+  language_not_contains?: Maybe<String>;
+  language_starts_with?: Maybe<String>;
+  language_not_starts_with?: Maybe<String>;
+  language_ends_with?: Maybe<String>;
+  language_not_ends_with?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  published_not?: Maybe<Boolean>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+  OR?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+  NOT?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+}
+
+export interface VideoUpdateInput {
+  language?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  title?: Maybe<String>;
+}
+
 export interface CommentCreateManyWithoutUserInput {
   create?: Maybe<
     CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput
@@ -704,11 +606,84 @@ export interface UserUpdateManyMutationInput {
   emailAddress?: Maybe<String>;
 }
 
-export interface UserUpdateOneRequiredWithoutCommentsInput {
-  create?: Maybe<UserCreateWithoutCommentsInput>;
-  update?: Maybe<UserUpdateWithoutCommentsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutCommentsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  username: String;
+  password: String;
+  emailAddress: String;
+  comments?: Maybe<CommentCreateManyWithoutUserInput>;
+}
+
+export interface CommentUpdateManyDataInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+}
+
+export interface SnippetUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  image?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  gitLink?: Maybe<String>;
+  link?: Maybe<String>;
+}
+
+export interface CommentWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  user?: Maybe<UserWhereInput>;
+  AND?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+  OR?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+  NOT?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+}
+
+export interface SnippetUpdateInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  image?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  gitLink?: Maybe<String>;
+  link?: Maybe<String>;
 }
 
 export interface CommentScalarWhereInput {
@@ -759,12 +734,195 @@ export interface CommentScalarWhereInput {
   NOT?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
 }
 
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  username?: Maybe<String>;
+}>;
+
+export interface SnippetSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SnippetWhereInput>;
+  AND?: Maybe<SnippetSubscriptionWhereInput[] | SnippetSubscriptionWhereInput>;
+  OR?: Maybe<SnippetSubscriptionWhereInput[] | SnippetSubscriptionWhereInput>;
+  NOT?: Maybe<SnippetSubscriptionWhereInput[] | SnippetSubscriptionWhereInput>;
+}
+
+export interface CommentCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  content?: Maybe<String>;
+  user: UserCreateOneWithoutCommentsInput;
+}
+
+export interface VideoUpdateManyMutationInput {
+  language?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  title?: Maybe<String>;
+}
+
+export interface UserCreateOneWithoutCommentsInput {
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface VideoCreateInput {
+  id?: Maybe<ID_Input>;
+  language: String;
+  published?: Maybe<Boolean>;
+  title: String;
+}
+
+export interface SnippetCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  image: String;
+  largeImage: String;
+  gitLink?: Maybe<String>;
+  link?: Maybe<String>;
+}
+
+export interface SnippetWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  largeImage_not?: Maybe<String>;
+  largeImage_in?: Maybe<String[] | String>;
+  largeImage_not_in?: Maybe<String[] | String>;
+  largeImage_lt?: Maybe<String>;
+  largeImage_lte?: Maybe<String>;
+  largeImage_gt?: Maybe<String>;
+  largeImage_gte?: Maybe<String>;
+  largeImage_contains?: Maybe<String>;
+  largeImage_not_contains?: Maybe<String>;
+  largeImage_starts_with?: Maybe<String>;
+  largeImage_not_starts_with?: Maybe<String>;
+  largeImage_ends_with?: Maybe<String>;
+  largeImage_not_ends_with?: Maybe<String>;
+  gitLink?: Maybe<String>;
+  gitLink_not?: Maybe<String>;
+  gitLink_in?: Maybe<String[] | String>;
+  gitLink_not_in?: Maybe<String[] | String>;
+  gitLink_lt?: Maybe<String>;
+  gitLink_lte?: Maybe<String>;
+  gitLink_gt?: Maybe<String>;
+  gitLink_gte?: Maybe<String>;
+  gitLink_contains?: Maybe<String>;
+  gitLink_not_contains?: Maybe<String>;
+  gitLink_starts_with?: Maybe<String>;
+  gitLink_not_starts_with?: Maybe<String>;
+  gitLink_ends_with?: Maybe<String>;
+  gitLink_not_ends_with?: Maybe<String>;
+  link?: Maybe<String>;
+  link_not?: Maybe<String>;
+  link_in?: Maybe<String[] | String>;
+  link_not_in?: Maybe<String[] | String>;
+  link_lt?: Maybe<String>;
+  link_lte?: Maybe<String>;
+  link_gt?: Maybe<String>;
+  link_gte?: Maybe<String>;
+  link_contains?: Maybe<String>;
+  link_not_contains?: Maybe<String>;
+  link_starts_with?: Maybe<String>;
+  link_not_starts_with?: Maybe<String>;
+  link_ends_with?: Maybe<String>;
+  link_not_ends_with?: Maybe<String>;
+  AND?: Maybe<SnippetWhereInput[] | SnippetWhereInput>;
+  OR?: Maybe<SnippetWhereInput[] | SnippetWhereInput>;
+  NOT?: Maybe<SnippetWhereInput[] | SnippetWhereInput>;
+}
+
+export interface CommentUpdateInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+  user?: Maybe<UserUpdateOneRequiredWithoutCommentsInput>;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutUserDataInput;
+  create: CommentCreateWithoutUserInput;
+}
+
+export interface UserUpdateOneRequiredWithoutCommentsInput {
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+  update?: Maybe<UserUpdateWithoutCommentsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutCommentsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export type PostWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
 export interface PostUpdateInput {
   content?: Maybe<String>;
   language?: Maybe<String>;
   published?: Maybe<Boolean>;
   title?: Maybe<String>;
   visitors?: Maybe<Int>;
+}
+
+export interface CommentUpdateManyMutationInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
 }
 
 export interface PostUpdateManyMutationInput {
@@ -775,18 +933,75 @@ export interface PostUpdateManyMutationInput {
   visitors?: Maybe<Int>;
 }
 
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  username: String;
-  password: String;
-  emailAddress: String;
-  comments?: Maybe<CommentCreateManyWithoutUserInput>;
-}
-
 export interface UserUpdateWithoutCommentsDataInput {
   username?: Maybe<String>;
   password?: Maybe<String>;
   emailAddress?: Maybe<String>;
+}
+
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  username?: Maybe<String>;
+  username_not?: Maybe<String>;
+  username_in?: Maybe<String[] | String>;
+  username_not_in?: Maybe<String[] | String>;
+  username_lt?: Maybe<String>;
+  username_lte?: Maybe<String>;
+  username_gt?: Maybe<String>;
+  username_gte?: Maybe<String>;
+  username_contains?: Maybe<String>;
+  username_not_contains?: Maybe<String>;
+  username_starts_with?: Maybe<String>;
+  username_not_starts_with?: Maybe<String>;
+  username_ends_with?: Maybe<String>;
+  username_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  emailAddress?: Maybe<String>;
+  emailAddress_not?: Maybe<String>;
+  emailAddress_in?: Maybe<String[] | String>;
+  emailAddress_not_in?: Maybe<String[] | String>;
+  emailAddress_lt?: Maybe<String>;
+  emailAddress_lte?: Maybe<String>;
+  emailAddress_gt?: Maybe<String>;
+  emailAddress_gte?: Maybe<String>;
+  emailAddress_contains?: Maybe<String>;
+  emailAddress_not_contains?: Maybe<String>;
+  emailAddress_starts_with?: Maybe<String>;
+  emailAddress_not_starts_with?: Maybe<String>;
+  emailAddress_ends_with?: Maybe<String>;
+  emailAddress_not_ends_with?: Maybe<String>;
+  comments_every?: Maybe<CommentWhereInput>;
+  comments_some?: Maybe<CommentWhereInput>;
+  comments_none?: Maybe<CommentWhereInput>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
 export interface VideoSubscriptionWhereInput {
@@ -800,27 +1015,14 @@ export interface VideoSubscriptionWhereInput {
   NOT?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
 }
 
-export interface CommentUpdateManyDataInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
+export interface CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput;
+  data: CommentUpdateManyDataInput;
 }
 
-export interface VideoUpdateInput {
-  language?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  title?: Maybe<String>;
-}
-
-export interface CommentSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CommentWhereInput>;
-  AND?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
-  OR?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
-  NOT?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
-}
+export type SnippetWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface NodeNode {
   id: ID_Output;
@@ -857,111 +1059,48 @@ export interface VideoPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface PostEdge {
-  node: Post;
-  cursor: String;
-}
-
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
-    Fragmentable {
-  node: <T = PostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CommentConnection {
-  pageInfo: PageInfo;
-  edges: CommentEdge[];
-}
-
-export interface CommentConnectionPromise
-  extends Promise<CommentConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CommentEdge>>() => T;
-  aggregate: <T = AggregateCommentPromise>() => T;
-}
-
-export interface CommentConnectionSubscription
-  extends Promise<AsyncIterator<CommentConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCommentSubscription>() => T;
-}
-
-export interface PostConnection {
-  pageInfo: PageInfo;
-  edges: PostEdge[];
-}
-
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
-}
-
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserPreviousValues {
+export interface Snippet {
   id: ID_Output;
-  username: String;
-  password: String;
-  emailAddress: String;
+  title: String;
+  description: String;
+  image: String;
+  largeImage: String;
+  gitLink?: String;
+  link?: String;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
+export interface SnippetPromise extends Promise<Snippet>, Fragmentable {
   id: () => Promise<ID_Output>;
-  username: () => Promise<String>;
-  password: () => Promise<String>;
-  emailAddress: () => Promise<String>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  image: () => Promise<String>;
+  largeImage: () => Promise<String>;
+  gitLink: () => Promise<String>;
+  link: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface SnippetSubscription
+  extends Promise<AsyncIterator<Snippet>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  username: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  emailAddress: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  largeImage: () => Promise<AsyncIterator<String>>;
+  gitLink: () => Promise<AsyncIterator<String>>;
+  link: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SnippetNullablePromise
+  extends Promise<Snippet | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  image: () => Promise<String>;
+  largeImage: () => Promise<String>;
+  gitLink: () => Promise<String>;
+  link: () => Promise<String>;
 }
 
 export interface UserSubscriptionPayload {
@@ -989,41 +1128,164 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateVideo {
+export interface AggregatePost {
   count: Int;
 }
 
-export interface AggregateVideoPromise
-  extends Promise<AggregateVideo>,
+export interface AggregatePostPromise
+  extends Promise<AggregatePost>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateVideoSubscription
-  extends Promise<AsyncIterator<AggregateVideo>>,
+export interface AggregatePostSubscription
+  extends Promise<AsyncIterator<AggregatePost>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface VideoConnection {
-  pageInfo: PageInfo;
-  edges: VideoEdge[];
+export interface PostEdge {
+  node: Post;
+  cursor: String;
 }
 
-export interface VideoConnectionPromise
-  extends Promise<VideoConnection>,
+export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
+  node: <T = PostPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PostEdgeSubscription
+  extends Promise<AsyncIterator<PostEdge>>,
+    Fragmentable {
+  node: <T = PostSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface VideoSubscriptionPayload {
+  mutation: MutationType;
+  node: Video;
+  updatedFields: String[];
+  previousValues: VideoPreviousValues;
+}
+
+export interface VideoSubscriptionPayloadPromise
+  extends Promise<VideoSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = VideoPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = VideoPreviousValuesPromise>() => T;
+}
+
+export interface VideoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<VideoSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = VideoSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = VideoPreviousValuesSubscription>() => T;
+}
+
+export interface PostConnection {
+  pageInfo: PageInfo;
+  edges: PostEdge[];
+}
+
+export interface PostConnectionPromise
+  extends Promise<PostConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<VideoEdge>>() => T;
-  aggregate: <T = AggregateVideoPromise>() => T;
+  edges: <T = FragmentableArray<PostEdge>>() => T;
+  aggregate: <T = AggregatePostPromise>() => T;
 }
 
-export interface VideoConnectionSubscription
-  extends Promise<AsyncIterator<VideoConnection>>,
+export interface PostConnectionSubscription
+  extends Promise<AsyncIterator<PostConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<VideoEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateVideoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePostSubscription>() => T;
+}
+
+export interface VideoEdge {
+  node: Video;
+  cursor: String;
+}
+
+export interface VideoEdgePromise extends Promise<VideoEdge>, Fragmentable {
+  node: <T = VideoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface VideoEdgeSubscription
+  extends Promise<AsyncIterator<VideoEdge>>,
+    Fragmentable {
+  node: <T = VideoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  username: String;
+  password: String;
+  emailAddress: String;
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
+  password: () => Promise<String>;
+  emailAddress: () => Promise<String>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  emailAddress: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Post {
@@ -1074,6 +1336,215 @@ export interface PostNullablePromise
   visitors: () => Promise<Int>;
 }
 
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Comment {
+  id: ID_Output;
+  title: String;
+  content?: String;
+}
+
+export interface CommentPromise extends Promise<Comment>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  content: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+}
+
+export interface CommentSubscription
+  extends Promise<AsyncIterator<Comment>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+}
+
+export interface CommentNullablePromise
+  extends Promise<Comment | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  content: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface CommentSubscriptionPayload {
+  mutation: MutationType;
+  node: Comment;
+  updatedFields: String[];
+  previousValues: CommentPreviousValues;
+}
+
+export interface CommentSubscriptionPayloadPromise
+  extends Promise<CommentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CommentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CommentPreviousValuesPromise>() => T;
+}
+
+export interface CommentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CommentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CommentPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateSnippet {
+  count: Int;
+}
+
+export interface AggregateSnippetPromise
+  extends Promise<AggregateSnippet>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSnippetSubscription
+  extends Promise<AsyncIterator<AggregateSnippet>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CommentPreviousValues {
+  id: ID_Output;
+  title: String;
+  content?: String;
+}
+
+export interface CommentPreviousValuesPromise
+  extends Promise<CommentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  content: () => Promise<String>;
+}
+
+export interface CommentPreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SnippetConnection {
+  pageInfo: PageInfo;
+  edges: SnippetEdge[];
+}
+
+export interface SnippetConnectionPromise
+  extends Promise<SnippetConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SnippetEdge>>() => T;
+  aggregate: <T = AggregateSnippetPromise>() => T;
+}
+
+export interface SnippetConnectionSubscription
+  extends Promise<AsyncIterator<SnippetConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SnippetEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSnippetSubscription>() => T;
+}
+
+export interface AggregateComment {
+  count: Int;
+}
+
+export interface AggregateCommentPromise
+  extends Promise<AggregateComment>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCommentSubscription
+  extends Promise<AsyncIterator<AggregateComment>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateVideo {
+  count: Int;
+}
+
+export interface AggregateVideoPromise
+  extends Promise<AggregateVideo>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateVideoSubscription
+  extends Promise<AsyncIterator<AggregateVideo>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PostSubscriptionPayload {
+  mutation: MutationType;
+  node: Post;
+  updatedFields: String[];
+  previousValues: PostPreviousValues;
+}
+
+export interface PostSubscriptionPayloadPromise
+  extends Promise<PostSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PostPreviousValuesPromise>() => T;
+}
+
+export interface PostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PostPreviousValuesSubscription>() => T;
+}
+
 export interface Video {
   createdAt: DateTimeOutput;
   id: ID_Output;
@@ -1112,79 +1583,6 @@ export interface VideoNullablePromise
   published: () => Promise<Boolean>;
   title: () => Promise<String>;
   updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface Comment {
-  id: ID_Output;
-  title: String;
-  content?: String;
-}
-
-export interface CommentPromise extends Promise<Comment>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-  user: <T = UserPromise>() => T;
-}
-
-export interface CommentSubscription
-  extends Promise<AsyncIterator<Comment>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  user: <T = UserSubscription>() => T;
-}
-
-export interface CommentNullablePromise
-  extends Promise<Comment | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-  user: <T = UserPromise>() => T;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CommentSubscriptionPayload {
-  mutation: MutationType;
-  node: Comment;
-  updatedFields: String[];
-  previousValues: CommentPreviousValues;
-}
-
-export interface CommentSubscriptionPayloadPromise
-  extends Promise<CommentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CommentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CommentPreviousValuesPromise>() => T;
-}
-
-export interface CommentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CommentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CommentPreviousValuesSubscription>() => T;
 }
 
 export interface User {
@@ -1246,42 +1644,63 @@ export interface UserNullablePromise
   }) => T;
 }
 
-export interface CommentPreviousValues {
+export interface SnippetPreviousValues {
   id: ID_Output;
   title: String;
-  content?: String;
+  description: String;
+  image: String;
+  largeImage: String;
+  gitLink?: String;
+  link?: String;
 }
 
-export interface CommentPreviousValuesPromise
-  extends Promise<CommentPreviousValues>,
+export interface SnippetPreviousValuesPromise
+  extends Promise<SnippetPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
-  content: () => Promise<String>;
+  description: () => Promise<String>;
+  image: () => Promise<String>;
+  largeImage: () => Promise<String>;
+  gitLink: () => Promise<String>;
+  link: () => Promise<String>;
 }
 
-export interface CommentPreviousValuesSubscription
-  extends Promise<AsyncIterator<CommentPreviousValues>>,
+export interface SnippetPreviousValuesSubscription
+  extends Promise<AsyncIterator<SnippetPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  largeImage: () => Promise<AsyncIterator<String>>;
+  gitLink: () => Promise<AsyncIterator<String>>;
+  link: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface SnippetSubscriptionPayload {
+  mutation: MutationType;
+  node: Snippet;
+  updatedFields: String[];
+  previousValues: SnippetPreviousValues;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface SnippetSubscriptionPayloadPromise
+  extends Promise<SnippetSubscriptionPayload>,
     Fragmentable {
-  count: () => Promise<Long>;
+  mutation: () => Promise<MutationType>;
+  node: <T = SnippetPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SnippetPreviousValuesPromise>() => T;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface SnippetSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SnippetSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SnippetSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SnippetPreviousValuesSubscription>() => T;
 }
 
 export interface CommentEdge {
@@ -1338,151 +1757,86 @@ export interface PostPreviousValuesSubscription
   visitors: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PostSubscriptionPayload {
-  mutation: MutationType;
-  node: Post;
-  updatedFields: String[];
-  previousValues: PostPreviousValues;
-}
-
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
-}
-
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateComment {
-  count: Int;
-}
-
-export interface AggregateCommentPromise
-  extends Promise<AggregateComment>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCommentSubscription
-  extends Promise<AsyncIterator<AggregateComment>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface VideoEdge {
-  node: Video;
+export interface SnippetEdge {
+  node: Snippet;
   cursor: String;
 }
 
-export interface VideoEdgePromise extends Promise<VideoEdge>, Fragmentable {
-  node: <T = VideoPromise>() => T;
+export interface SnippetEdgePromise extends Promise<SnippetEdge>, Fragmentable {
+  node: <T = SnippetPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface VideoEdgeSubscription
-  extends Promise<AsyncIterator<VideoEdge>>,
+export interface SnippetEdgeSubscription
+  extends Promise<AsyncIterator<SnippetEdge>>,
     Fragmentable {
-  node: <T = VideoSubscription>() => T;
+  node: <T = SnippetSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregatePost {
-  count: Int;
+export interface UserEdge {
+  node: User;
+  cursor: String;
 }
 
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserConnection {
+export interface VideoConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: VideoEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface VideoConnectionPromise
+  extends Promise<VideoConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<VideoEdge>>() => T;
+  aggregate: <T = AggregateVideoPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface VideoConnectionSubscription
+  extends Promise<AsyncIterator<VideoConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<VideoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateVideoSubscription>() => T;
 }
 
-export interface AggregateUser {
-  count: Int;
+export interface CommentConnection {
+  pageInfo: PageInfo;
+  edges: CommentEdge[];
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface CommentConnectionPromise
+  extends Promise<CommentConnection>,
     Fragmentable {
-  count: () => Promise<Int>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CommentEdge>>() => T;
+  aggregate: <T = AggregateCommentPromise>() => T;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface CommentConnectionSubscription
+  extends Promise<AsyncIterator<CommentConnection>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface VideoSubscriptionPayload {
-  mutation: MutationType;
-  node: Video;
-  updatedFields: String[];
-  previousValues: VideoPreviousValues;
-}
-
-export interface VideoSubscriptionPayloadPromise
-  extends Promise<VideoSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = VideoPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = VideoPreviousValuesPromise>() => T;
-}
-
-export interface VideoSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<VideoSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = VideoSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = VideoPreviousValuesSubscription>() => T;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentSubscription>() => T;
 }
 
 /*
-DateTime scalar input type, allowing Date
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type DateTimeInput = Date | string;
-
-/*
-DateTime scalar output type, which is always a string
-*/
-export type DateTimeOutput = string;
+export type Int = number;
 
 export type Long = string;
 
@@ -1498,14 +1852,19 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
+
+/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
 
 /**
  * Model Metadata
@@ -1526,6 +1885,10 @@ export const models: Model[] = [
   },
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "Snippet",
     embedded: false
   }
 ];
