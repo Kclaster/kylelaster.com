@@ -43,6 +43,12 @@ type Snippet {
   link: String
 }
 
+type Blog {
+  id: ID! @id
+  title: String!
+  content: String
+}
+
 
 
 

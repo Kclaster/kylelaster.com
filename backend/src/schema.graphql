@@ -1,10 +1,14 @@
 type Query {
   feed: [Post!]!
   drafts: [Post!]!
+  blogs: [Blog!]!
   post(id: ID!): Post
+  snippets: [Snippet!]!
 }
 
 type Mutation {
+  createBlog(title: String!, description: String): Blog!
+  deleteBlog(id: ID!): Blog
   createSnippet(
     title: String
     description: String
@@ -33,4 +37,10 @@ type Snippet {
   largeImage: String
   gitLink: String
   link: String
+}
+
+type Blog {
+  id: ID!
+  title: String!
+  description: String
 }

@@ -31,7 +31,7 @@ class CreateSnippet extends Component {
     image: "",
     largeImage: "",
     gitLink: "",
-    link: "",
+    link: ""
   };
   uploadFile = async e => {
     console.log("uploading file");

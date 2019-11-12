@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../constants/sizes */ "./constants/sizes.ts");
 /* harmony import */ var _Link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Link */ "./components/Link.tsx");
-var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\NavBar\\index.tsx";
+var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\NavBar\\index.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependencies
 
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/sizes */ "./constants/sizes.ts");
 /* harmony import */ var _Logo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Logo */ "./components/Logo.tsx");
 /* harmony import */ var _NavBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NavBar */ "./components/Header/NavBar/index.tsx");
-var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\index.tsx";
+var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\index.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependecies
 
@@ -254,7 +254,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _constants_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/styles */ "./constants/styles.ts");
-var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Link.tsx";
+var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Link.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependencies
 
@@ -313,7 +313,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/sizes */ "./constants/sizes.ts");
 /* harmony import */ var _constants_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/styles */ "./constants/styles.ts");
 /* harmony import */ var _constants_transformations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants/transformations */ "./constants/transformations.ts");
-var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Logo.tsx";
+var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Logo.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependencies
 
@@ -371,7 +371,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/sizes */ "./constants/sizes.ts");
-var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Page.tsx";
+var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Page.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // Internal Dependencies
@@ -2748,7 +2748,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _utils_withData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/withData */ "./utils/withData.tsx");
 
-var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\pages\\_app.tsx";
+var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\pages\\_app.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 

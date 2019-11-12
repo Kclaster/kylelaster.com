@@ -2,7 +2,11 @@
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-export const typeDefs = /* GraphQL */ `type AggregateComment {
+export const typeDefs = /* GraphQL */ `type AggregateBlog {
+  count: Int!
+}
+
+type AggregateComment {
   count: Int!
 }
 
@@ -24,6 +28,124 @@ type AggregateVideo {
 
 type BatchPayload {
   count: Long!
+}
+
+type Blog {
+  id: ID!
+  title: String!
+  content: String
+}
+
+type BlogConnection {
+  pageInfo: PageInfo!
+  edges: [BlogEdge]!
+  aggregate: AggregateBlog!
+}
+
+input BlogCreateInput {
+  id: ID
+  title: String!
+  content: String
+}
+
+type BlogEdge {
+  node: Blog!
+  cursor: String!
+}
+
+enum BlogOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  content_ASC
+  content_DESC
+}
+
+type BlogPreviousValues {
+  id: ID!
+  title: String!
+  content: String
+}
+
+type BlogSubscriptionPayload {
+  mutation: MutationType!
+  node: Blog
+  updatedFields: [String!]
+  previousValues: BlogPreviousValues
+}
+
+input BlogSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BlogWhereInput
+  AND: [BlogSubscriptionWhereInput!]
+  OR: [BlogSubscriptionWhereInput!]
+  NOT: [BlogSubscriptionWhereInput!]
+}
+
+input BlogUpdateInput {
+  title: String
+  content: String
+}
+
+input BlogUpdateManyMutationInput {
+  title: String
+  content: String
+}
+
+input BlogWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  AND: [BlogWhereInput!]
+  OR: [BlogWhereInput!]
+  NOT: [BlogWhereInput!]
+}
+
+input BlogWhereUniqueInput {
+  id: ID
 }
 
 type Comment {
@@ -250,6 +372,12 @@ scalar DateTime
 scalar Long
 
 type Mutation {
+  createBlog(data: BlogCreateInput!): Blog!
+  updateBlog(data: BlogUpdateInput!, where: BlogWhereUniqueInput!): Blog
+  updateManyBlogs(data: BlogUpdateManyMutationInput!, where: BlogWhereInput): BatchPayload!
+  upsertBlog(where: BlogWhereUniqueInput!, create: BlogCreateInput!, update: BlogUpdateInput!): Blog!
+  deleteBlog(where: BlogWhereUniqueInput!): Blog
+  deleteManyBlogs(where: BlogWhereInput): BatchPayload!
   createComment(data: CommentCreateInput!): Comment!
   updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
   updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
@@ -487,6 +615,9 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  blog(where: BlogWhereUniqueInput!): Blog
+  blogs(where: BlogWhereInput, orderBy: BlogOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Blog]!
+  blogsConnection(where: BlogWhereInput, orderBy: BlogOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BlogConnection!
   comment(where: CommentWhereUniqueInput!): Comment
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
@@ -708,6 +839,7 @@ input SnippetWhereUniqueInput {
 }
 
 type Subscription {
+  blog(where: BlogSubscriptionWhereInput): BlogSubscriptionPayload
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   snippet(where: SnippetSubscriptionWhereInput): SnippetSubscriptionPayload

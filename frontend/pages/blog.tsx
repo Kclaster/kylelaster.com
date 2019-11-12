@@ -1,13 +1,14 @@
 // Internal Dependencies
-import Page from "../components/Page"
+import Page from "../components/Page";
+import DisplayBlogs from "../components/DisplayBlogs";
 
 // Component Definition
 const Blog = () => {
   return (
     <Page>
-      This is a blog
+      <DisplayBlogs />
     </Page>
-  )
-}
+  );
+};
 
 export default Blog;

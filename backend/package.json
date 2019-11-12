@@ -1,9 +1,11 @@
 {
   "name": "kylelaster",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "nodemon -e js,graphql -x ts-node src/index.ts",
+    "dev": "nodemon -e js,graphql -x ts-node --inspect src/index.js",
     "deploy": "prisma deploy"
   },
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
     "graphql-cli": "^3.0.14",

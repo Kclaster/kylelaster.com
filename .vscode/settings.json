@@ -1,11 +1,8 @@
 {
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.formatOnPaste": true,
-    "editor.tabSize": 2,
-    "editor.wordWrap": "on",
-    "editor.formatOnSave": true,
-    "tslint.autoFixOnSave": true,
-    "window.zoomLevel": 0,
-    "explorer.autoReveal": false,
-    "typescript.suggest.autoImports": true
-   }
+  "workbench.colorCustomizations": {
+    "activityBar.activeForeground": "#000",
+    "activityBar.inactiveForeground": "#000000CC",
+    "activityBar.background": "#FFC600",
+    "activityBar.inactiveBackground": "#FFC600CC"
+  }
+}
