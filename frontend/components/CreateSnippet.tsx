@@ -5,14 +5,14 @@ import gql from "graphql-tag";
 import Router from "next/router";
 const CREATE_SNIPPET_MUTATION = gql`
   mutation CREATE_SNIPPET_MUTATION(
-    $title: String!
-    $description: String!
-    $image: String!
-    $largeImage: String!
+    $title: String
+    $description: String
+    $image: String
+    $largeImage: String
     $gitLink: String
     $link: String
   ) {
-    createItem(
+    createSnippet(
       title: $title
       description: $description
       image: $image
@@ -38,7 +38,7 @@ class CreateSnippet extends Component {
     const { files } = e.target;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", "sickfits");
+    data.append("upload_preset", "kylelaster.com");
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/dtmnev3wn/image/upload",
       {
@@ -63,7 +63,7 @@ class CreateSnippet extends Component {
   render() {
     return (
       <Mutation mutation={CREATE_SNIPPET_MUTATION} variables={this.state}>
-        {(createItem, payload) => {
+        {(createSnippet, payload) => {
           const { loading, error } = payload;
           return (
             <Form
@@ -71,13 +71,12 @@ class CreateSnippet extends Component {
                 // stop form from submitting
                 e.preventDefault();
                 // call the mutation
-                console.log(this.state);
-                const res = await createItem();
+                const res = await createSnippet();
                 // bring them to the single item page
-                console.log(res);
+                console.log({ res });
                 Router.push({
-                  pathname: "/snippet",
-                  query: { id: res.data.createItem.id }
+                  pathname: "/",
+                  // query: { id: res.data.createSnippet.id }
                 });
               }}
             >

@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../constants/sizes */ "./constants/sizes.ts");
 /* harmony import */ var _Link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Link */ "./components/Link.tsx");
-var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\NavBar\\index.tsx";
+var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\NavBar\\index.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependencies
 
@@ -41,37 +41,34 @@ var Wrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"].div({
   display: 'flex',
   justifyContent: 'space-between',
   width: _constants_sizes__WEBPACK_IMPORTED_MODULE_2__["NAVBAR_DIMENSIONS"].WIDTH
-});
-var StyledLink = Object(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"])(_Link__WEBPACK_IMPORTED_MODULE_3__["default"])({
-  fontFamily: 'Red Hat Text'
 }); // Component Definition
 
 var NavBar = function NavBar() {
   return __jsx(Wrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 19
     },
     __self: this
-  }, __jsx(StyledLink, {
+  }, __jsx(_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
     href: "/blog",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 20
     },
     __self: this
-  }, "Blog"), __jsx(StyledLink, {
+  }, "Blog"), __jsx(_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
     href: "/contact-me",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 21
     },
     __self: this
-  }, "Contact Me"), __jsx(StyledLink, {
+  }, "Contact Me"), __jsx(_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
     href: "/admin",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 22
     },
     __self: this
   }, "Admin"));
@@ -96,7 +93,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/sizes */ "./constants/sizes.ts");
 /* harmony import */ var _Logo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Logo */ "./components/Logo.tsx");
 /* harmony import */ var _NavBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NavBar */ "./components/Header/NavBar/index.tsx");
-var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\index.tsx";
+var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Header\\index.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependecies
 
@@ -158,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _constants_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/styles */ "./constants/styles.ts");
-var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Link.tsx";
+var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Link.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependencies
 
@@ -168,9 +165,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // Local Typings
 
 // Local Variables
-var StyledLink = Object(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"])(next_link__WEBPACK_IMPORTED_MODULE_2___default.a)({
+var StyledLink = _emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"].a({
+  cursor: 'pointer',
   borderBottom: _constants_styles__WEBPACK_IMPORTED_MODULE_3__["BORDERS"].HIDDEN,
-  color: _constants_styles__WEBPACK_IMPORTED_MODULE_3__["BASE_COLORS"].WHITE,
+  color: _constants_styles__WEBPACK_IMPORTED_MODULE_3__["BASE_COLORS"].BLACK,
   paddingBottom: _constants_styles__WEBPACK_IMPORTED_MODULE_3__["PADDING"].MD,
   textDecoration: 'none',
   '&:hover': {
@@ -179,17 +177,17 @@ var StyledLink = Object(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"])
 }); // Component Definition
 
 var Link = function Link(props) {
-  return __jsx(StyledLink, {
+  return __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     href: props.href,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 30
     },
     __self: this
-  }, __jsx("a", {
+  }, __jsx(StyledLink, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 31
     },
     __self: this
   }, props.children));
@@ -216,18 +214,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/sizes */ "./constants/sizes.ts");
 /* harmony import */ var _constants_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/styles */ "./constants/styles.ts");
 /* harmony import */ var _constants_transformations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants/transformations */ "./constants/transformations.ts");
-var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Logo.tsx";
+var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Logo.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // External Dependencies
+
 
  // Internal Dependencies
 
 
 
-
  // Local Variables
 
-var StyledLink = Object(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"])(next_link__WEBPACK_IMPORTED_MODULE_2___default.a)({
+var StyledLink = _emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"].a({
   border: _constants_styles__WEBPACK_IMPORTED_MODULE_4__["BORDERS"].STANDARD,
   borderRadius: '10000px',
   color: _constants_styles__WEBPACK_IMPORTED_MODULE_4__["BASE_COLORS"].WHITE,
@@ -241,14 +239,14 @@ var StyledLink = Object(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__["default"])
 }); // Component Definition
 
 var Logo = function Logo() {
-  return __jsx(StyledLink, {
+  return __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 34
     },
     __self: this
-  }, __jsx("a", {
+  }, __jsx(StyledLink, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 34
@@ -275,30 +273,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header */ "./components/Header/index.tsx");
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js");
 /* harmony import */ var _constants_sizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/sizes */ "./constants/sizes.ts");
-var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\components\\Page.tsx";
+var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\components\\Page.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // Internal Dependencies
 
 
- // Local Props
 
 // Local Typings
 var Wrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_2__["default"].div({
-  marginTop: _constants_sizes__WEBPACK_IMPORTED_MODULE_3__["HEADER_DIMENSIONS"].HEIGHT
+  paddingTop: _constants_sizes__WEBPACK_IMPORTED_MODULE_3__["HEADER_DIMENSIONS"].HEIGHT,
+  backgroundImage: 'url(https://res.cloudinary.com/dtmnev3wn/image/upload/v1573534943/kylelaster.com/patrick-robert-doyle-yUvZYHV2Zbw-unsplash_mnlb1l.jpg)',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  minHeight: '100vh'
 }); // Component Definition
 
 var Page = function Page(props) {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 25
     },
     __self: this
   }), __jsx(Wrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 26
     },
     __self: this
   }, props.children));
@@ -377,7 +378,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PADDING", function() { return PADDING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BORDERS", function() { return BORDERS; });
 var BASE_COLORS = {
-  WHITE: '#f5f5f5'
+  WHITE: '#f5f5f5',
+  BLACK: '#040714'
 };
 var LINEAR_GRADIENTS = {
   GREY: 'linear-gradient(180deg, #5D6066, #f5f5f5)'
@@ -30175,7 +30177,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Users\\Kyle\\code\\freelance\\kylelaster.com\\frontend\\pages\\_app.tsx";
+var _jsxFileName = "C:\\Users\\kylel\\code\\freelance\\kylelaster.com\\frontend\\pages\\_app.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 

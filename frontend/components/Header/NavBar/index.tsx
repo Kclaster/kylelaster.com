@@ -13,17 +13,13 @@ const Wrapper = styled.div({
   width: NAVBAR_DIMENSIONS.WIDTH,
 });
 
-const StyledLink = styled(Link)({
-  fontFamily: 'Red Hat Text',
-});
-
 // Component Definition
 const NavBar: React.FC = () => {
   return (
     <Wrapper>
-      <StyledLink href="/blog">Blog</StyledLink>
-      <StyledLink href="/contact-me">Contact Me</StyledLink>
-      <StyledLink href="/admin">Admin</StyledLink>
+      <Link href="/blog">Blog</Link>
+      <Link href="/contact-me">Contact Me</Link>
+      <Link href="/admin">Admin</Link>
     </Wrapper>
   );
 };

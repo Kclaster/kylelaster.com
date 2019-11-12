@@ -1,5 +1,6 @@
 export const BASE_COLORS = {
   WHITE: '#f5f5f5',
+  BLACK: '#040714'
 };
 
 export const LINEAR_GRADIENTS = {

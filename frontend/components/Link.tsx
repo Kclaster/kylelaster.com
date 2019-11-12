@@ -11,9 +11,10 @@ interface Props {
 }
 
 // Local Variables
-const StyledLink = styled(NextLink)({
+const StyledLink = styled.a({
+  cursor: 'pointer',
   borderBottom: BORDERS.HIDDEN,
-  color: BASE_COLORS.WHITE,
+  color: BASE_COLORS.BLACK,
   paddingBottom: PADDING.MD,
   textDecoration: 'none',
 
@@ -26,11 +27,11 @@ const StyledLink = styled(NextLink)({
 // Component Definition
 const Link: React.FC<Props> = (props) => {
   return (
-    <StyledLink href={props.href}>
-      <a>
+    <NextLink href={props.href}>
+      <StyledLink>
         {props.children}
-      </a>
-    </StyledLink>
+      </StyledLink>
+    </NextLink>
   );
 };
 

@@ -1,9 +1,9 @@
 // External Dependencies
 import styled from '@emotion/styled';
 import React from 'react';
+import Link from 'next/link';
 
 // Internal Dependencies
-import Link from 'next/link';
 import { PADDING_SIZES } from '../constants/sizes';
 import {
   BASE_COLORS,
@@ -15,7 +15,7 @@ import {
 } from '../constants/transformations';
 
 // Local Variables
-const StyledLink = styled(Link)({
+const StyledLink = styled.a({
   border: BORDERS.STANDARD,
   borderRadius: '10000px',
   color: BASE_COLORS.WHITE,
@@ -31,6 +31,6 @@ const StyledLink = styled(Link)({
 });
 
 // Component Definition
-const Logo: React.FC = () => <StyledLink href="/"><a>Portfolio</a></StyledLink>;
+const Logo: React.FC = () => <Link href="/"><StyledLink>Portfolio</StyledLink></Link>;
 
 export default Logo;
