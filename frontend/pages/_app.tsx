@@ -1,7 +1,18 @@
 import App, { Container } from "next/app";
-import Page from "../components/Page";
 import { ApolloProvider } from "react-apollo";
 import withData from "../utils/withData";
+import { injectGlobal } from 'emotion'
+
+// Local Variable
+injectGlobal`
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+`;
+
+
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps: any = {};
@@ -17,9 +28,7 @@ class MyApp extends App {
     return (
       <Container>
         <ApolloProvider client={apollo}>
-          <Page>
-            <Component {...pageProps} />
-          </Page>
+          <Component {...pageProps} />
         </ApolloProvider>
       </Container>
     );
