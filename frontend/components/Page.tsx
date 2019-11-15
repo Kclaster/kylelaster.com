@@ -11,7 +11,7 @@ interface Props {
 
 // Local Typings
 const Wrapper = styled.div({
-  paddingTop: HEADER_DIMENSIONS.HEIGHT,
+  paddingTop: `calc(${HEADER_DIMENSIONS.HEIGHT} + 4vh)`,
   backgroundImage: 'url(https://res.cloudinary.com/dtmnev3wn/image/upload/v1573534943/kylelaster.com/patrick-robert-doyle-yUvZYHV2Zbw-unsplash_mnlb1l.jpg)',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',

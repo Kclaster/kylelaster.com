@@ -3,6 +3,9 @@ import { Mutation } from "react-apollo";
 import Form from "./Form";
 import gql from "graphql-tag";
 import Router from "next/router";
+import Input from "./Input";
+import Button, { ButtonType } from "./Button";
+
 const CREATE_SNIPPET_MUTATION = gql`
   mutation CREATE_SNIPPET_MUTATION(
     $title: String
@@ -24,6 +27,8 @@ const CREATE_SNIPPET_MUTATION = gql`
     }
   }
 `;
+
+
 class CreateSnippet extends Component {
   state = {
     title: "",
@@ -80,70 +85,43 @@ class CreateSnippet extends Component {
                 });
               }}
             >
-              <fieldset disabled={loading} aria-busy={loading}>
-                <label htmlFor="file">
-                  Image
-                  <input
-                    type="file"
-                    id="file"
-                    name="file"
-                    placeholder="Upload an image"
-                    required
-                    onChange={this.uploadFile}
-                  />
-                  {this.state.image && (
-                    <img src={this.state.image} alt="upload preview" />
-                  )}
-                </label>
-                <label htmlFor="title">
-                  Title
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    placeholder="Title"
-                    required
-                    value={this.state.title}
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label htmlFor="title">
-                  GitHub Link
-                  <input
-                    type="text"
-                    id="gitLink"
-                    name="gitLink"
-                    placeholder="GitLink"
-                    required
-                    value={this.state.gitLink}
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label htmlFor="title">
-                  Link
-                  <input
-                    type="text"
-                    id="link"
-                    name="link"
-                    placeholder="Link"
-                    required
-                    value={this.state.link}
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <label htmlFor="description">
-                  Description
-                  <textarea
-                    id="description"
-                    name="description"
-                    placeholder="Enter A Description"
-                    required
-                    value={this.state.description}
-                    onChange={this.handleChange}
-                  />
-                </label>
-                <button type="submit">Submit</button>
-              </fieldset>
+              <Input
+                name="file"
+                label="Image"
+                required
+                onChange={this.uploadFile}
+              />
+              <Input
+                name="title"
+                label="Title"
+                required
+                value={this.state.title}
+                onChange={this.handleChange}
+              />
+              <Input
+                name="title"
+                label="GitHub Link"
+                required
+                value={this.state.gitLink}
+                onChange={this.handleChange}
+              />
+              <Input
+                name="link"
+                label="Link"
+                required
+                value={this.state.link}
+                onChange={this.handleChange}
+              />
+              <Input
+                name="description"
+                label="Description"
+                required
+                value={this.state.description}
+                onChange={this.handleChange}
+              />
+              <Button type={ButtonType.SUBMIT}>
+                Submit
+              </Button>
             </Form>
           );
         }}

@@ -1,11 +1,13 @@
+// Internal Dependencies
 import CreateSnippet from "../components/CreateSnippet"
+import Page from "../components/Page"
 
+// Component Definition
 const Admin = () => {
   return (
-    <div>
-      only kyle's allowed here
+    <Page>
       <CreateSnippet />
-    </div>
+    </Page>
   )
 }
 
