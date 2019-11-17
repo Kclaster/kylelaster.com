@@ -1,7 +1,7 @@
 // External Dependencies
 import { css } from 'emotion';
 import React from 'react';
-import { BasePercents, PADDING_SIZES } from '../../constants/sizes';
+import { BasePercents, PADDING_SIZES } from '../../../constants/sizes';
 
 // Local Typings
 interface Props {

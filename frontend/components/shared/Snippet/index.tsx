@@ -6,17 +6,17 @@ import React, { useState } from 'react';
 import {
   IMAGE_SIZES,
   PADDING_SIZES,
-} from '../../constants/sizes';
-import { BASE_COLORS } from '../../constants/styles';
+} from '../../../constants/sizes';
+import { BASE_COLORS } from '../../../constants/styles';
+import HidingText from './HidingText';
 import Heading2 from '../Text/Heading2';
 import Paragraph from '../Text/Paragraph';
-import HidingText from './HidingText';
 
 // TODO: variant should be strongly typed
 // Local Typings
 export interface StyledImgProps {
   image: string;
-  text: string;
+  description: string;
   title: string;
   variant?: SnippetVariants;
 }
@@ -102,13 +102,13 @@ const Snippet: React.FC<StyledImgProps> = ({
               Technologies Used:
             {' '}
             </HidingText>
-            {props.text}
+            {props.description}
           </HidingText>
         </TextWrapper>
       ) : (
           <>
             <Heading2>{props.title}</Heading2>
-            <Paragraph>{props.text}</Paragraph>
+            <Paragraph>{props.description}</Paragraph>
           </>
         )}
     </Wrapper>

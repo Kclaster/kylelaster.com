@@ -1,8 +1,8 @@
 // Internal Dependencies
-import Header from "./Header"
 import styled from "@emotion/styled"
-import { BASE_COLORS } from "../constants/styles";
-import { PADDING_SIZES } from "../constants/sizes";
+import { BASE_COLORS } from "../../constants/styles";
+import { PADDING_SIZES } from "../../constants/sizes";
+import Header from "../complex/Header";
 
 // Local Props
 interface Props {

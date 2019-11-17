@@ -3,8 +3,9 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 // Internal Dependencies
-import { NAVBAR_DIMENSIONS } from '../../../constants/sizes';
-import Link from '../../Link';
+import Link from '../../../shared/Link';
+import { NAVBAR_DIMENSIONS } from '../../../../constants/sizes';
+
 
 // Local Variables
 const Wrapper = styled.div({

@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import React, { useRef, useEffect, useState } from 'react';
 
 // Internal Depenencies
-import { PADDING_SIZES } from '../../constants/sizes';
-import Logo from '../Logo';
 import NavBar from './NavBar';
-import { BASE_COLORS } from '../../constants/styles';
+import { BASE_COLORS } from '../../../constants/styles';
+import { PADDING_SIZES } from '../../../constants/sizes';
+import Logo from '../../shared/Logo';
 
 // Local Typings
 interface StyledProps {

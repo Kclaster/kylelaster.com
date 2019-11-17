@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { PADDING_SIZES } from "../constants/sizes";
-import { BORDER_RADIUS, BOX_SHADOW, BASE_COLORS } from "../constants/styles";
+import { PADDING_SIZES } from "../../constants/sizes";
+import { BORDER_RADIUS, BOX_SHADOW, BASE_COLORS } from "../../constants/styles";
 
 // Local Variables
 const StyledLabel = styled.label({

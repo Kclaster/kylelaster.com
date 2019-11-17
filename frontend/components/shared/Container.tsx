@@ -1,7 +1,7 @@
 // External Dependencies
 import styled from '@emotion/styled';
 import React from 'react';
-import { PADDING_SIZES } from '../constants/sizes';
+import { PADDING_SIZES } from '../../constants/sizes';
 
 // Internal Dependencies
 

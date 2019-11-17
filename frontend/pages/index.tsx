@@ -1,25 +1,54 @@
 // Internal Dependencies
-import AppearTyping from '../components/AppearTyping';
-import Flex from '../components/Flex';
-import GlossedWindow from '../components/GlossedWindow';
-import Page from '../components/Page';
-import Heading1 from '../components/Text/Heading1';
+import AppearTyping from '../components/shared/AppearTyping';
+import Flex from '../components/shared/Flex';
+import GlossedWindow from '../components/shared/GlossedWindow';
+import Page from '../components/shared/Page';
+import Heading1 from '../components/shared/Text/Heading1';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import Snippet from '../components/shared/Snippet';
+import Paragraph from '../components/shared/Text/Paragraph';
+
+const All_SNIPPETS_QUERY = gql`
+query All_SNIPPETS_QUERY {
+  snippets{
+  title
+  image
+  description
+  }
+}
+`;
 
 // Component Definition
 const Home = () => {
   return (
     <Page>
       <Flex flexDirection="column">
-        <GlossedWindow
-          width="75%"
-        >
-          <Flex
-            fullHeight={false}
-            flexDirection="column"
-          >
-            <Heading1>My Portfolio</Heading1>
-          </Flex>
-        </GlossedWindow>
+        <Query query={All_SNIPPETS_QUERY}>
+          {({ data, error, loading }) => {
+            console.log({ data })
+            console.log({ error })
+            console.log({ loading })
+            if (loading || !data) return <Paragraph>Loading...</Paragraph>
+            return (
+              <GlossedWindow
+                width="75%"
+              >
+                <Flex
+                  fullHeight={false}
+                  flexDirection="column"
+                >
+                  <Heading1>My Portfolio</Heading1>
+                  {data.snippets.map(snippet => {
+                    return (
+                      <Snippet {...snippet} />
+                    )
+                  })}
+                </Flex>
+              </GlossedWindow>
+            )
+          }}
+        </Query>
         <AppearTyping
           width="75%"
           messages={[
@@ -32,3 +61,4 @@ const Home = () => {
   );
 };
 export default Home;
+export { All_SNIPPETS_QUERY }

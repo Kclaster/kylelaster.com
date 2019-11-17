@@ -1,6 +1,6 @@
 // Internal Dependencies
-import Page from "../components/Page";
-import DisplayBlogs from "../components/DisplayBlogs";
+import Page from "../components/shared/Page";
+import DisplayBlogs from "../components/shared/DisplayBlogs";
 
 // Component Definition
 const Blog = () => {

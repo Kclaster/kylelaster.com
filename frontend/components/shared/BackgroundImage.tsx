@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 // Internal Dependencies
-import { BASE_COLORS } from '../constants/styles';
+import { BASE_COLORS } from '../../constants/styles';
 
 // Local Typings
 interface Props {

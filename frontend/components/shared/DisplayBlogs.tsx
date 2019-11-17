@@ -24,7 +24,7 @@ class DisplayBlogs extends Component {
       <Center>
         <Query
           query={ALL_BLOGS_QUERY}
-          // fetchPolicy="network-only"
+        // fetchPolicy="network-only"
         >
           {({ data, error, loading }) => {
             if (loading) return <p>Loading...</p>;

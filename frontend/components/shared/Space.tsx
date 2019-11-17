@@ -5,7 +5,7 @@ import React from 'react';
 import {
   getSpace,
   PaddingSizes,
-} from '../constants/sizes';
+} from '../../constants/sizes';
 
 // Local Typings
 interface Props extends SpaceProps {
@@ -59,9 +59,9 @@ const Space: React.FC<Props> = ({
 
   return React.cloneElement(
     children, {
-      style,
-      ...children.props,
-    }
+    style,
+    ...children.props,
+  }
   );
 };
 

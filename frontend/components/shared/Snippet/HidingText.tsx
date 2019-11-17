@@ -4,8 +4,8 @@ import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
-import { BASE_COLORS } from '../../constants/styles';
-import { getFontSize } from '../../utils/sizes';
+import { BASE_COLORS } from '../../../constants/styles';
+import { getFontSize } from '../../../utils/sizes';
 import { TextProps } from '../Text';
 
 // Local Typings

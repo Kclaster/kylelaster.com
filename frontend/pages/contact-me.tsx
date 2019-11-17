@@ -1,5 +1,5 @@
 // Internal Dependencies
-import Page from "../components/Page"
+import Page from "../components/shared/Page"
 
 // Component Definition
 const contactMe = () => {

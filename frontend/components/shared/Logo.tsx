@@ -4,15 +4,15 @@ import React from 'react';
 import Link from 'next/link';
 
 // Internal Dependencies
-import { PADDING_SIZES } from '../constants/sizes';
+import { PADDING_SIZES } from '../../constants/sizes';
 import {
   BASE_COLORS,
   BORDERS,
-} from '../constants/styles';
+} from '../../constants/styles';
 import {
   SCALE,
   TRANSITION_TIME,
-} from '../constants/transformations';
+} from '../../constants/transformations';
 
 // Local Variables
 const StyledLink = styled.a({

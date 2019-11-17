@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
-import { BasePercents, PADDING_SIZES } from '../../constants/sizes';
+import { BasePercents, PADDING_SIZES } from '../../../constants/sizes';
 import Text from '../Text';
 import UnderScore from './UnderScore';
 // Local Typings

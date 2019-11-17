@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
 import { Mutation } from "react-apollo";
-import Form from "./Form";
+import Form from "../shared/Form";
 import gql from "graphql-tag";
 import Router from "next/router";
-import Input from "./Input";
-import Button, { ButtonType } from "./Button";
-import { useTextField } from "../hooks";
+import Input from "../shared/Input";
+import Button, { ButtonType } from "../shared/Button";
+import { useTextField } from "../../hooks";
 
 const CREATE_SNIPPET_MUTATION = gql`
   mutation CREATE_SNIPPET_MUTATION(

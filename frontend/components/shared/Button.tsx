@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
-import { BOX_SHADOW, LINEAR_GRADIENTS, BORDER_RADIUS, BORDERS, BASE_COLORS } from "../constants/styles"
-import { PADDING_SIZES } from "../constants/sizes"
+import { BOX_SHADOW, LINEAR_GRADIENTS, BORDER_RADIUS, BORDERS, BASE_COLORS } from "../../constants/styles"
+import { PADDING_SIZES } from "../../constants/sizes"
 
 
 // Local Typings

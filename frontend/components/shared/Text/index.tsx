@@ -3,9 +3,9 @@ import { css } from 'emotion';
 import React from 'react';
 
 // Internal Dependencies
-import { FontSizes } from '../../constants/sizes';
-import { BASE_COLORS } from '../../constants/styles';
-import { getFontSize } from '../../utils/sizes';
+import { FontSizes } from '../../../constants/sizes';
+import { BASE_COLORS } from '../../../constants/styles';
+import { getFontSize } from '../../../utils/sizes';
 
 // Local Typings
 export interface TextProps {

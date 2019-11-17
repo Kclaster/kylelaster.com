@@ -1,6 +1,6 @@
 // Internal Dependencies
-import CreateSnippet from "../components/CreateSnippet"
-import Page from "../components/Page"
+import CreateSnippet from "../components/complex/CreateSnippet"
+import Page from "../components/shared/Page"
 
 // Component Definition
 const Admin = () => {

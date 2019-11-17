@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import NextLink from 'next/link';
-import { BASE_COLORS, BORDERS, PADDING } from '../constants/styles';
+import { BASE_COLORS, BORDERS, PADDING } from '../../constants/styles';
 // Internal Dependencies
 
 // Local Typings
