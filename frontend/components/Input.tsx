@@ -1,19 +1,26 @@
 import styled from "@emotion/styled";
 import { PADDING_SIZES } from "../constants/sizes";
-import { BASE_COLORS } from "../constants/styles";
+import { BORDER_RADIUS, BOX_SHADOW, BASE_COLORS } from "../constants/styles";
 
 // Local Variables
 const StyledLabel = styled.label({
   display: 'flex',
   flexDirection: 'column',
-  margin: `${PADDING_SIZES.sm} 0`
+  margin: `${PADDING_SIZES.sm} 0`,
+  color: BASE_COLORS.WHITE
 })
 
 const StyledInput = styled.input({
+  border: 'none',
+  borderRadius: BORDER_RADIUS.ROUNDED,
   width: '100%',
   padding: PADDING_SIZES.sm,
   marginTop: PADDING_SIZES.sm,
-  boxShadow: `1px 2px 3px 2px ${BASE_COLORS.BLACK}`,
+  boxShadow: BOX_SHADOW.INPUT,
+
+  '&:focus': {
+    outline: 'none'
+  }
 })
 
 // Local Typings

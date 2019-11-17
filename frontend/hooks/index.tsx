@@ -28,3 +28,16 @@ function useInterval(callback: any, delay: number) {
     return () => clearInterval(id);
   }, [delay]);
 }
+
+export function useTextField(initialState: string) {
+  const [value, setValue] = useState(initialState);
+
+  const onChange = (event) => {
+    setValue(event.target.value)
+  }
+
+  return {
+    onChange,
+    value,
+  }
+}

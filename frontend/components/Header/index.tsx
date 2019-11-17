@@ -1,31 +1,53 @@
 // External Dependecies
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 // Internal Depenencies
-import { HEADER_DIMENSIONS, PADDING_SIZES } from '../../constants/sizes';
+import { PADDING_SIZES } from '../../constants/sizes';
 import Logo from '../Logo';
 import NavBar from './NavBar';
+import { BASE_COLORS } from '../../constants/styles';
+
+// Local Typings
+interface StyledProps {
+  height: number;
+}
 
 // Local Variable
-const Wrapper = styled.div({
+const AbsoluteWrapper = styled.div({
   alignItems: 'flex-end',
+  background: BASE_COLORS.OFF_WHITE,
   display: 'flex',
-  height: `${HEADER_DIMENSIONS.HEIGHT}`,
   justifyContent: 'space-between',
-  padding: `0 ${PADDING_SIZES.sm}`,
+  padding: PADDING_SIZES.sm,
   position: 'fixed',
   width: '100vw',
   top: '0'
 });
 
+const RelativeWrapper = styled.div((props: StyledProps) => ({
+  height: props.height
+}));
+
 // Component Definition
 const Header: React.FC = () => {
+  const [height, setHeight] = useState<number | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (wrapperRef.current && wrapperRef.current.clientHeight) {
+      setHeight(wrapperRef.current.clientHeight);
+    }
+  }, [wrapperRef.current && wrapperRef.current.clientHeight])
+
   return (
-    <Wrapper>
-      <Logo />
-      <NavBar />
-    </Wrapper>
+    <>
+      <AbsoluteWrapper ref={wrapperRef}>
+        <Logo />
+        <NavBar />
+      </AbsoluteWrapper>
+      <RelativeWrapper height={height} />
+    </>
   );
 };
 

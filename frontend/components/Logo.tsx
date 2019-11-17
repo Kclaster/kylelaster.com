@@ -16,9 +16,10 @@ import {
 
 // Local Variables
 const StyledLink = styled.a({
-  border: BORDERS.STANDARD,
+  cursor: 'pointer',
+  border: BORDERS.PRIMARY.DARK,
   borderRadius: '10000px',
-  color: BASE_COLORS.WHITE,
+  color: BASE_COLORS.PRIMARY.DARK,
   fontFamily: 'Red Hat Text',
   padding: PADDING_SIZES.sm,
   textDecoration: 'none',

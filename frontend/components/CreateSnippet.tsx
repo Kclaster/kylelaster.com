@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Mutation } from "react-apollo";
 import Form from "./Form";
 import gql from "graphql-tag";
 import Router from "next/router";
 import Input from "./Input";
 import Button, { ButtonType } from "./Button";
+import { useTextField } from "../hooks";
 
 const CREATE_SNIPPET_MUTATION = gql`
   mutation CREATE_SNIPPET_MUTATION(
@@ -29,16 +30,22 @@ const CREATE_SNIPPET_MUTATION = gql`
 `;
 
 
-class CreateSnippet extends Component {
-  state = {
-    title: "",
-    description: "",
-    image: "",
-    largeImage: "",
-    gitLink: "",
-    link: ""
-  };
-  uploadFile = async e => {
+const CreateSnippet = () => {
+  const [image, setImage] = useState();
+  const [largeImage, setLargeImage] = useState();
+  const titleField = useTextField('');
+  const githubLinkField = useTextField('');
+  const linkField = useTextField('');
+  const descriptionField = useTextField('');
+  const snippetState = {
+    image,
+    largeImage,
+    title: titleField.value,
+    githubLink: githubLinkField.value,
+    description: descriptionField.value
+  }
+
+  const uploadFile = async e => {
     console.log("uploading file");
     const { files } = e.target;
     const data = new FormData();
@@ -53,81 +60,73 @@ class CreateSnippet extends Component {
     );
     const file = await res.json();
     console.log(file);
-    this.setState({
-      image: file.secure_url,
-      largeImage: file.eager[0].secure_url
-    });
+    setImage(file.secure_url);
+    setLargeImage(file.eager[0].secure.url)
   };
-  handleChange = e => {
-    const { name, type, value } = e.target;
-    const val = type === "number" ? parseFloat(value) : value;
-    this.setState({
-      [name]: val
-    });
-  };
-  render() {
-    return (
-      <Mutation mutation={CREATE_SNIPPET_MUTATION} variables={this.state}>
-        {(createSnippet, payload) => {
-          const { loading, error } = payload;
-          return (
-            <Form
-              onSubmit={async e => {
-                // stop form from submitting
-                e.preventDefault();
-                // call the mutation
-                const res = await createSnippet();
-                // bring them to the single item page
-                console.log({ res });
-                Router.push({
-                  pathname: "/",
-                  // query: { id: res.data.createSnippet.id }
-                });
-              }}
-            >
-              <Input
-                name="file"
-                label="Image"
-                required
-                onChange={this.uploadFile}
-              />
-              <Input
-                name="title"
-                label="Title"
-                required
-                value={this.state.title}
-                onChange={this.handleChange}
-              />
-              <Input
-                name="title"
-                label="GitHub Link"
-                required
-                value={this.state.gitLink}
-                onChange={this.handleChange}
-              />
-              <Input
-                name="link"
-                label="Link"
-                required
-                value={this.state.link}
-                onChange={this.handleChange}
-              />
-              <Input
-                name="description"
-                label="Description"
-                required
-                value={this.state.description}
-                onChange={this.handleChange}
-              />
-              <Button type={ButtonType.SUBMIT}>
-                Submit
-              </Button>
-            </Form>
-          );
-        }}
-      </Mutation>
-    );
-  }
+  // const handleChange = e => {
+  //   const { name, type, value } = e.target;
+  //   const val = type === "number" ? parseFloat(value) : value;
+  //   this.setState({
+  //     [name]: val
+  //   });
+  // };
+  return (
+    <Mutation mutation={CREATE_SNIPPET_MUTATION} variables={snippetState}>
+      {(createSnippet, payload) => {
+        const { loading, error } = payload;
+        return (
+          <Form
+            onSubmit={async e => {
+              // stop form from submitting
+              e.preventDefault();
+              // call the mutation
+              const res = await createSnippet();
+              // bring them to the single item page
+              console.log({ res });
+              Router.push({
+                pathname: "/",
+                // query: { id: res.data.createSnippet.id }
+              });
+            }}
+          >
+            <Input
+              name="file"
+              label="Image"
+              required
+              onChange={uploadFile}
+            />
+            <Input
+              name="title"
+              label="Title"
+              required
+              {...titleField}
+            />
+            <Input
+              name="githubLink"
+              label="GitHub Link"
+              required
+              {...githubLinkField}
+            />
+            <Input
+              name="link"
+              label="Link"
+              required
+              {...linkField}
+            />
+            <Input
+              name="description"
+              label="Description"
+              required
+              {...descriptionField}
+            />
+            <Button variant='outlined' type='submit'>
+              Submit
+            </Button>
+          </Form>
+        );
+      }}
+    </Mutation>
+  );
 }
 export default CreateSnippet;
 export { CREATE_SNIPPET_MUTATION };

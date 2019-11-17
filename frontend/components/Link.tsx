@@ -14,7 +14,7 @@ interface Props {
 const StyledLink = styled.a({
   cursor: 'pointer',
   borderBottom: BORDERS.HIDDEN,
-  color: BASE_COLORS.BLACK,
+  color: BASE_COLORS.PRIMARY.DARK,
   paddingBottom: PADDING.MD,
   textDecoration: 'none',
 

@@ -2,6 +2,7 @@ import App, { Container } from "next/app";
 import { ApolloProvider } from "react-apollo";
 import withData from "../utils/withData";
 import { injectGlobal } from 'emotion'
+import { BASE_COLORS } from "../constants/styles";
 
 // Local Variable
 injectGlobal`

@@ -1,8 +1,8 @@
 // Internal Dependencies
 import Header from "./Header"
 import styled from "@emotion/styled"
-import { HEADER_DIMENSIONS } from "../constants/sizes"
 import { BASE_COLORS } from "../constants/styles";
+import { PADDING_SIZES } from "../constants/sizes";
 
 // Local Props
 interface Props {
@@ -11,11 +11,9 @@ interface Props {
 
 // Local Typings
 const Wrapper = styled.div({
-  paddingTop: `calc(${HEADER_DIMENSIONS.HEIGHT} + 4vh)`,
-  backgroundImage: 'url(https://res.cloudinary.com/dtmnev3wn/image/upload/v1573534943/kylelaster.com/patrick-robert-doyle-yUvZYHV2Zbw-unsplash_mnlb1l.jpg)',
-  backgroundSize: 'contain',
-  backgroundRepeat: 'no-repeat',
-  minHeight: '100vh'
+  background: BASE_COLORS.PRIMARY.DARK,
+  minHeight: '100vh',
+  padding: `${PADDING_SIZES.md} ${PADDING_SIZES.xl}`,
 });
 
 // Component Definition

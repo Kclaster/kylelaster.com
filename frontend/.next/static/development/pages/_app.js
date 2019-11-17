@@ -26075,8 +26075,8 @@ function _templateObject() {
 
 
 
- // Local Variable
 
+// Local Variable
 Object(emotion__WEBPACK_IMPORTED_MODULE_13__["injectGlobal"])(_templateObject());
 
 var MyApp =
@@ -26100,20 +26100,20 @@ function (_App) {
       return __jsx(next_app__WEBPACK_IMPORTED_MODULE_10__["Container"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 30
         },
         __self: this
       }, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_11__["ApolloProvider"], {
         client: apollo,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 31
         },
         __self: this
       }, __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, pageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 32
         },
         __self: this
       }))));

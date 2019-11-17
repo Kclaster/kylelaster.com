@@ -18,12 +18,8 @@ export type PaddingSizes =
   'md' |
   'lg' |
   'xl' |
-  'xxl';
-
-// Exports
-export const HEADER_DIMENSIONS = {
-  HEIGHT: '8vh',
-};
+  'xxl' |
+  'xxxl';
 
 export const IMAGE_SIZES = {
   sm: '300px',
@@ -45,11 +41,12 @@ export const FONT_SIZES: {
 export const PADDING_SIZES: {
   [k in PaddingSizes]: string;
 } = {
+  xl: '48px',
   lg: '36px',
   md: '24px',
   sm: '12px',
-  xl: '72px',
-  xxl: '95px',
+  xxl: '72px',
+  xxxl: '95px',
 };
 
 // Export Functions
